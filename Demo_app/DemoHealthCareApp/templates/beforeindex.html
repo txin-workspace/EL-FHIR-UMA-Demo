@@ -1,0 +1,30 @@
+<head>
+    <script>
+        try {
+            hash_token_arry = decodeURI(location.hash.substring(1)).split('&');
+        }
+        catch {
+            console.log('no login');
+            window.location.href = 'https://{{ app_am_host }}:{{ app_am_port }}/realms/{{ app_am_realm }}/protocol/openid-connect/auth?response_type=token&client_id={{ app_client_id }}&redirect_uri={{ app_client_redirect_url }}&flow=implicit&useNonce=true';
+        }
+
+        if (hash_token_arry.length != 4) {
+            window.location.href = 'https://{{ app_am_host }}:{{ app_am_port }}/realms/{{ app_am_realm }}/protocol/openid-connect/auth?response_type=token&client_id={{ app_client_id }}&redirect_uri={{ app_client_redirect_url }}&flow=implicit&useNonce=true';
+        }
+    </script>
+</head>
+
+<body style="background-color: #f9f9a9a0;">
+
+    <h2>Please Login ECHOENT Lite Web API Server with App Account</h2>
+    Click:
+    <button onclick="login_el()">
+        <h3>Login ECHONET Lite Web API Server</h3>
+    </button>
+
+    <script>
+        function login_el() {
+            window.location.href = 'https://{{ el_am_host }}:{{ el_am_port }}/realms/{{ el_am_realm }}/protocol/openid-connect/auth?response_type=token&client_id={{ client_id }}&redirect_uri={{ client_redirect_url }}&flow=implicit&useNonce=true';
+        }
+    </script>
+</body>

@@ -1,0 +1,224 @@
+version: "3"
+
+services:
+    el_keycloak:
+        container_name: 
+            el_server_auth
+        ports:
+            - "18081:8443"
+        image: 
+            quay.io/keycloak/keycloak:20.0.3
+        environment:
+            KEYCLOAK_ADMIN: admin
+            KEYCLOAK_ADMIN_PASSWORD: password
+            KEYCLOAK_ENABLE_TLS: true
+            KC_HTTPS_CERTIFICATE_FILE: /opt/keycloak/conf/server.crt.pem
+            KC_HTTPS_CERTIFICATE_KEY_FILE: /opt/keycloak/conf/server.key.pem
+            KEYCLOAK_TLS_CREATE_KEYSTORE: true
+            KEYCLOAK_TLS_KEYSTORE_FILE: /opt/keycloak/certs/keycloak.keystore.jks
+            KEYCLOAK_TLS_KEYSTORE_PASSWORD: password
+            KEYCLOAK_TLS_TRUSTSTORE_FILE: /opt/keycloak/certs/keycloak.truststore.jks
+            KEYCLOAK_TLS_TRUSTSTORE_PASSWORD: password
+        volumes:
+            - ./trust/server.crt.pem:/opt/keycloak/conf/server.crt.pem
+            - ./trust/server.key.pem:/opt/keycloak/conf/server.key.pem
+            - ./trust/truststore.jks:/opt/keycloak/certs/keycloak.truststore.jks
+            - ./trust/keystore.jks:/opt/keycloak/certs/keycloak.keystore.jks
+            - ./realm/el_realm.json:/opt/keycloak/data/import/realm.json
+        command:
+            - start-dev
+            - --spi-truststore-file-file=/opt/keycloak/certs/keycloak.truststore.jks
+            - --spi-truststore-file-password=password
+            - --spi-truststore-file-hostname-verification-policy=ANY
+            - --import-realm
+    
+    health_keycloak:        
+        container_name: 
+            health_server_auth
+        ports:
+            - "18082:8443"
+        image: 
+            quay.io/keycloak/keycloak:20.0.3
+        environment:
+            KEYCLOAK_ADMIN: admin
+            KEYCLOAK_ADMIN_PASSWORD: password
+            KEYCLOAK_ENABLE_TLS: true
+            KC_HTTPS_CERTIFICATE_FILE: /opt/keycloak/conf/server.crt.pem
+            KC_HTTPS_CERTIFICATE_KEY_FILE: /opt/keycloak/conf/server.key.pem
+            KEYCLOAK_TLS_CREATE_KEYSTORE: true
+            KEYCLOAK_TLS_KEYSTORE_FILE: /opt/keycloak/certs/keycloak.keystore.jks
+            KEYCLOAK_TLS_KEYSTORE_PASSWORD: password
+            KEYCLOAK_TLS_TRUSTSTORE_FILE: /opt/keycloak/certs/keycloak.truststore.jks
+            KEYCLOAK_TLS_TRUSTSTORE_PASSWORD: password
+            # KC_HOSTNAME: HealthServerAuth.local
+        volumes:
+            - ./trust/server.crt.pem:/opt/keycloak/conf/server.crt.pem
+            - ./trust/server.key.pem:/opt/keycloak/conf/server.key.pem
+            - ./trust/truststore.jks:/opt/keycloak/certs/keycloak.truststore.jks
+            - ./trust/keystore.jks:/opt/keycloak/certs/keycloak.keystore.jks
+            - ./realm/pcha_realm.json:/opt/keycloak/data/import/realm.json
+        command:
+            - start-dev
+            - --spi-truststore-file-file=/opt/keycloak/certs/keycloak.truststore.jks
+            - --spi-truststore-file-password=password
+            - --spi-truststore-file-hostname-verification-policy=ANY
+            - --import-realm
+    
+    app_keycloak:
+        container_name: 
+            app_server_auth
+        ports:
+            - "18083:8443"
+        hostname:
+            AppServerAuth
+        image: 
+            quay.io/keycloak/keycloak:20.0.3
+        environment:
+            KEYCLOAK_ADMIN: admin
+            KEYCLOAK_ADMIN_PASSWORD: password
+            KEYCLOAK_ENABLE_TLS: true
+            KC_HTTPS_CERTIFICATE_FILE: /opt/keycloak/conf/server.crt.pem
+            KC_HTTPS_CERTIFICATE_KEY_FILE: /opt/keycloak/conf/server.key.pem
+            KEYCLOAK_TLS_CREATE_KEYSTORE: true
+            KEYCLOAK_TLS_KEYSTORE_FILE: /opt/keycloak/certs/keycloak.keystore.jks
+            KEYCLOAK_TLS_KEYSTORE_PASSWORD: password
+            KEYCLOAK_TLS_TRUSTSTORE_FILE: /opt/keycloak/certs/keycloak.truststore.jks
+            KEYCLOAK_TLS_TRUSTSTORE_PASSWORD: password
+            # KC_HOSTNAME: AppServerAuth.local
+        volumes:
+            - ./trust/server.crt.pem:/opt/keycloak/conf/server.crt.pem
+            - ./trust/server.key.pem:/opt/keycloak/conf/server.key.pem
+            - ./trust/truststore.jks:/opt/keycloak/certs/keycloak.truststore.jks
+            - ./trust/keystore.jks:/opt/keycloak/certs/keycloak.keystore.jks
+            - ./realm/app_realm.json:/opt/keycloak/data/import/realm.json
+        command:
+            - start-dev
+            - --spi-truststore-file-file=/opt/keycloak/certs/keycloak.truststore.jks
+            - --spi-truststore-file-password=password
+            - --spi-truststore-file-hostname-verification-policy=ANY
+            - --import-realm
+            
+    health_hapi:
+        image:
+            hapiproject/hapi:v6.2.2
+        container_name:
+            health_server_hapi
+        ports:
+            - "18888:8080"
+        
+    health_rs:
+        container_name:
+            health_server_rs
+        ports:
+            - "16000:6000"
+        build:
+            context: ./FHIR_RS/
+            dockerfile: Dockerfile
+        environment:
+            AM_HOST: YOUR_ADDRESS
+            AM_PORT: 18082
+            REALM_NAME: PCHA_HAPI
+            CLIENT_ID: pcha-rs
+            CLIENT_SCRET: E38cvMe9olJeSS56jHV7ThWm5aYhb3yp
+            HAPI_HOST: YOUR_ADDRESS
+            HAPI_PORT: 18888
+            EL_AGENT_NAME: el-pcha-agent
+            EL_AGENT_ID: 1a5abf9d-a2bd-4e50-9bda-1ee6150af26d
+
+    el_rs:
+        container_name:
+            el_server_rs
+        ports:
+            - "16001:10000"
+        build:
+            context: ./ELWebAPI_RS/
+            dockerfile: Dockerfile
+        environment:
+            AM_HOST: YOUR_ADDRESS
+            AM_PORT: 18081
+            REALM_NAME: ELWebAPI-m
+            CLIENT_ID: el_rs
+            CLIENT_SCRET: I9mwfSvG06xzXN45Wf1Gf5n70NCo9xsw
+            WEB_CLIENT_ID: elwebapi_web
+            HEALTH_RS_HOST: YOUR_ADDRESS
+            HEALTH_RS_PORT: 16000
+            AGENT_NAME_HEALTH: el-pcha-agent
+            AGENT_PW_HEALTH: password
+            AGENT_NAME_EL: el-pcha-agent
+            AGENT_PW_EL: password
+
+
+    demo_app:
+        container_name:
+            demo_health_care_app
+        ports:
+            - "11000:11000"
+        build:
+            context: ./Demo_app/
+            dockerfile: Dockerfile
+        environment:
+            EL_RS_HOST: YOUR_ADDRESS
+            EL_RS_PORT: 16001
+            EL_AM_HOST: YOUR_ADDRESS
+            EL_AM_PORT: 18081
+            EL_AM_REALM_NAME: ELWebAPI-m 
+            CLIENT_ID: health_care_app
+            CLIENT_REDIRECT_URL: http://YOUR_ADDRESS:11000/index
+            APP_AM_HOST: YOUR_ADDRESS
+            APP_AM_PORT: 18083
+            APP_AM_REALM_NAME:  HealthService
+            APP_CLIENT_ID: health_app
+            APP_CLIENT_REDIRECT_URL: http://YOUR_ADDRESS:11000/beforeindex
+
+
+    health_rs_web:
+        container_name:
+            health_rs_web
+        ports:
+            - "12000:12000"
+        build:
+            context: ./FHIRWeb/
+            dockerfile: Dockerfile
+        environment:
+            HEALTH_RS_HOST: YOUR_ADDRESS
+            HEALTH_RS_PORT: 16000
+            HEALTH_AM_HOST: YOUR_ADDRESS
+            HEALTH_AM_PORT: 18082
+            HEALTH_AM_REALM_NAME: PCHA_HAPI 
+            CLIENT_ID: pcha-rs
+            CLIENT_REDIRECT_URL: http://YOUR_ADDRESS:12000/index
+
+
+    el_rs_web:
+        container_name:
+            el_rs_web
+        ports:
+            - "13000:13000"
+        build:
+            context: ./ELWeb/
+            dockerfile: Dockerfile
+        environment:
+            EL_RS_HOST: YOUR_ADDRESS
+            EL_RS_PORT: 16001
+            EL_AM_HOST: YOUR_ADDRESS
+            EL_AM_PORT: 18081
+            EL_AM_REALM_NAME: ELWebAPI-m 
+            CLIENT_ID: el_rs
+            CLIENT_REDIRECT_URL: http://YOUR_ADDRESS:13000/index
+
+
+    res_upload:
+        container_name:
+            res_upload
+        build:
+            context: ./TestResUpload/
+            dockerfile: Dockerfile
+        environment:
+            EL_RS_HOST: YOUR_ADDRESS
+            EL_RS_PORT: 16001
+            EL_RS_UNAME: el-data-owner
+            EL_RS_PW: password
+            FHIR_RS_HOST: YOUR_ADDRESS
+            FHIR_RS_PORT: 16000
+            FHIR_RS_UNAME: pcha-data-owner
+            FHIR_RS_PW: password

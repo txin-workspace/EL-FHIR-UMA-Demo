@@ -1,0 +1,2117 @@
+{
+	"info": {
+		"_postman_id": "404ea391-5479-4e99-bb57-97a182ec9bfd",
+		"name": "KeyCloak-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7693235"
+	},
+	"item": [
+		{
+			"name": "API",
+			"item": [
+				{
+					"name": "well-known",
+					"item": [
+						{
+							"name": "oidc",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/.well-known/openid-configuration",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										".well-known",
+										"openid-configuration"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "uma",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/.well-known/uma2-configuration",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										".well-known",
+										"uma2-configuration"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "AuthToken",
+					"item": [
+						{
+							"name": "Token-Client",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"client-token\", jsonData.access_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "{{client-id}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{client-secret}}",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/protocol/openid-connect/token",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"protocol",
+										"openid-connect",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Token-Client-rp",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"client-token-rp\", jsonData.access_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "{{client-id-rp}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{client-secret-rp}}",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/protocol/openid-connect/token",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"protocol",
+										"openid-connect",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Token-User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"user-token\", jsonData.access_token);",
+											"pm.collectionVariables.set(\"user-refresh-token\", jsonData.refresh_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "{{client-id}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{client-secret}}",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "{{user-name}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user-password}}",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/protocol/openid-connect/token",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"protocol",
+										"openid-connect",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Token-User-Logout",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// "
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "{{client-id}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{client-secret}}",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "{{user-name}}",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "{{user-password}}",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "refresh_token",
+											"value": "{{user-refresh-token}}",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "session_state",
+											"value": "61c1bf39-ed3a-4caf-997e-e20812c9b0b7",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/protocol/openid-connect/logout",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"protocol",
+										"openid-connect",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Token-User Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"user-token\", jsonData.access_token);",
+											"pm.collectionVariables.set(\"user-refresh-token\", jsonData.refresh_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "{{client-id}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{client-secret}}",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "{{user-name}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user-password}}",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/protocol/openid-connect/token",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"protocol",
+										"openid-connect",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Token-User-RP",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"user-token-rp\", jsonData.access_token);",
+											"pm.collectionVariables.set(\"user-refresh-token-rp\", jsonData.refresh_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "{{client-id}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{client-secret}}",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "{{user-name-rp}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user-password-rp}}",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/protocol/openid-connect/token",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"protocol",
+										"openid-connect",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Token-User-RP Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"user-token-rp\", jsonData.access_token);",
+											"pm.collectionVariables.set(\"user-refresh-token-rp\", jsonData.refresh_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "{{client-id}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{client-secret}}",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "{{user-name-rp}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{user-password-rp}}",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/protocol/openid-connect/token",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"protocol",
+										"openid-connect",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Token-Introspect-User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "{{client-id}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{client-secret}}",
+											"type": "text"
+										},
+										{
+											"key": "token",
+											"value": "{{user-token}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/protocol/openid-connect/token/introspect",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"protocol",
+										"openid-connect",
+										"token",
+										"introspect"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Token-Introspect-User Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "{{client-id}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{client-secret}}",
+											"type": "text"
+										},
+										{
+											"key": "token",
+											"value": "{{user-token}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/protocol/openid-connect/token/introspect",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"protocol",
+										"openid-connect",
+										"token",
+										"introspect"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Token-Introspect-User Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "{{client-id}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{client-secret}}",
+											"type": "text"
+										},
+										{
+											"key": "token",
+											"value": "{{user-token}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/protocol/openid-connect/token/introspect",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"protocol",
+										"openid-connect",
+										"token",
+										"introspect"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Token-Introspect-User Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "{{client-id}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{client-secret}}",
+											"type": "text"
+										},
+										{
+											"key": "token",
+											"value": "{{user-token}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/protocol/openid-connect/token/introspect",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"protocol",
+										"openid-connect",
+										"token",
+										"introspect"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Token-Introspect-User Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "{{client-id}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{client-secret}}",
+											"type": "text"
+										},
+										{
+											"key": "token",
+											"value": "{{user-token}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/protocol/openid-connect/token/introspect",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"protocol",
+										"openid-connect",
+										"token",
+										"introspect"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Token-Introspect-RPT",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "token",
+											"value": "{{rpt}}",
+											"type": "text"
+										},
+										{
+											"key": "token_type_hint",
+											"value": "requesting_party_token",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "{{client-id}}",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "{{client-secret}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/protocol/openid-connect/token/introspect",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"protocol",
+										"openid-connect",
+										"token",
+										"introspect"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Resource",
+					"item": [
+						{
+							"name": "Resource-IdListUp",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{client-token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/authz/protection/resource_set",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"authz",
+										"protection",
+										"resource_set"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Resource-IdListUp Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{client-token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/authz/protection/resource_set",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"authz",
+										"protection",
+										"resource_set"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Resource-IdListUp Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{client-token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/authz/protection/resource_set",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"authz",
+										"protection",
+										"resource_set"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Resource-ListUpByOwner",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{client-token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/authz/protection/resource_set?owner={{owner-name}}",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"authz",
+										"protection",
+										"resource_set"
+									],
+									"query": [
+										{
+											"key": "owner",
+											"value": "{{owner-name}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Resource-ListUpByOwner Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{client-token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/authz/protection/resource_set?owner={{owner-name}}",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"authz",
+										"protection",
+										"resource_set"
+									],
+									"query": [
+										{
+											"key": "owner",
+											"value": "{{owner-name}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Resource-Delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{client-token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/authz/protection/resource_set/{{resource-id}}",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"authz",
+										"protection",
+										"resource_set",
+										"{{resource-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Resource-Show",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{client-token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/authz/protection/resource_set/{{resource-id}}",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"authz",
+										"protection",
+										"resource_set",
+										"{{resource-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Resource_Create",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{client-token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"{{resource-name}}\",\n    \"owner\": \"{{owner-name}}\",\n    \"type\": \"el_device\",\n    \"ownerManagedAccess\": true,\n    \"scopes\": [\n        \"metadata\",\n        \"data_read\",\n        \"data_write\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/authz/protection/resource_set",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"authz",
+										"protection",
+										"resource_set"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Policy",
+					"item": [
+						{
+							"name": "Policy-Create-users",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user-token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"policy-{{resource-id}}-users-{{share-target-user}}\",\n    \"users\": [\n        \"{{share-target-user}}\"\n    ],\n    \"scopes\": [\n        \"data_read\"\n    ],\n    \"description\": \"client:healthcare\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/authz/protection/uma-policy/{{resource-id}}",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"authz",
+										"protection",
+										"uma-policy",
+										"{{resource-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Policy-Create-clients",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user-token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"policy-{{resource-id}}-data_read\",\n    \n    \"clients\": [\n        \"{{share-target-client}}\"\n    ],\n    \"scopes\": [\n        \"data_read\"\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/authz/protection/uma-policy/{{resource-id}}",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"authz",
+										"protection",
+										"uma-policy",
+										"{{resource-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Policy-ListUpResourcePolicy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user-token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/authz/protection/uma-policy?resource={{resource-id}}",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"authz",
+										"protection",
+										"uma-policy"
+									],
+									"query": [
+										{
+											"key": "resource",
+											"value": "{{resource-id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Policy-ListUpResourcePolicy Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user-token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/authz/protection/uma-policy?resource={{resource-id}}",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"authz",
+										"protection",
+										"uma-policy"
+									],
+									"query": [
+										{
+											"key": "resource",
+											"value": "{{resource-id}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Policy-Delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user-token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/authz/protection/uma-policy/{{policy-id}}",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"authz",
+										"protection",
+										"uma-policy",
+										"{{policy-id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Permission",
+					"item": [
+						{
+							"name": "Permission-CreateTicket",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"permission-ticket\", jsonData.ticket);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{client-token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n    {\n        \"resource_id\": \"{{resource-id}}\",\n        \"resource_scopes\": [\n            \"data_read\"\n        ]\n    }\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/authz/protection/permission",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"authz",
+										"protection",
+										"permission"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Permission-CreateTicket Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"permission-ticket\", jsonData.ticket);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{client-token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n    {\n        \"resource_id\": \"{{resource-id}}\",\n        \"resource_scopes\": [\n            \"data_read\"\n        ]\n    }\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/authz/protection/permission",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"authz",
+										"protection",
+										"permission"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Permission-RPT-User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"rpt\", jsonData.access_token);",
+											"pm.collectionVariables.set(\"rpt-refresh\", jsonData.refresh_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user-token-rp}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "urn:ietf:params:oauth:grant-type:uma-ticket",
+											"type": "text"
+										},
+										{
+											"key": "audience",
+											"value": "{{client-id}}",
+											"type": "text"
+										},
+										{
+											"key": "ticket",
+											"value": "{{permission-ticket}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/protocol/openid-connect/token",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"protocol",
+										"openid-connect",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Permission-RPT-User Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"rpt\", jsonData.access_token);",
+											"pm.collectionVariables.set(\"rpt-refresh\", jsonData.refresh_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user-token-rp}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "urn:ietf:params:oauth:grant-type:uma-ticket",
+											"type": "text"
+										},
+										{
+											"key": "audience",
+											"value": "{{client-id}}",
+											"type": "text"
+										},
+										{
+											"key": "ticket",
+											"value": "{{permission-ticket}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/protocol/openid-connect/token",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"protocol",
+										"openid-connect",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Permission-RPT-Client",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"rpt\", jsonData.access_token);",
+											"pm.collectionVariables.set(\"rpt-refresh\", jsonData.refresh_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{client-token-rp}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "urn:ietf:params:oauth:grant-type:uma-ticket",
+											"type": "text"
+										},
+										{
+											"key": "audience",
+											"value": "{{client-id}}",
+											"type": "text"
+										},
+										{
+											"key": "ticket",
+											"value": "{{permission-ticket}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/protocol/openid-connect/token",
+									"protocol": "https",
+									"host": [
+										"{{kc-host}}"
+									],
+									"port": "{{kc-https-port}}",
+									"path": [
+										"realms",
+										"{{target-realm}}",
+										"protocol",
+										"openid-connect",
+										"token"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "UMA Flow",
+			"item": [
+				{
+					"name": "0-ResourceServer-ResourceRegister",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{client-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"{{resource-name}}\",\n    \"owner\": \"{{owner-name}}\",\n    \"ownerManagedAccess\": true,\n    \"scopes\": [\n        \"metadata\",\n        \"data_read\",\n        \"data_write\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/authz/protection/resource_set",
+							"protocol": "https",
+							"host": [
+								"{{kc-host}}"
+							],
+							"port": "{{kc-https-port}}",
+							"path": [
+								"realms",
+								"{{target-realm}}",
+								"authz",
+								"protection",
+								"resource_set"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "1-ResourceOwner-Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "{{client-id}}",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{client-secret}}",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "{{user-name}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{user-password}}",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/protocol/openid-connect/token",
+							"protocol": "https",
+							"host": [
+								"{{kc-host}}"
+							],
+							"port": "{{kc-https-port}}",
+							"path": [
+								"realms",
+								"{{target-realm}}",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2-ResourceOwner-PolicyCreate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"policy-{{resource-id}}-users\",\n    \"users\": [\n        \"{{share-target-user}}\"\n    ],\n    \"scopes\": [\n        \"data_read\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/authz/protection/uma-policy/{{resource-id}}",
+							"protocol": "https",
+							"host": [
+								"{{kc-host}}"
+							],
+							"port": "{{kc-https-port}}",
+							"path": [
+								"realms",
+								"{{target-realm}}",
+								"authz",
+								"protection",
+								"uma-policy",
+								"{{resource-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3-RequestingParty-ResourceAccessWithoutRPT(ResourceServer-TicketRequest))",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"permission-ticket\", jsonData.ticket);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{client-token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"resource_id\": \"{{resource-id}}\",\n        \"resource_scopes\": [\n            \"data_read\"\n        ]\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/authz/protection/permission",
+							"protocol": "https",
+							"host": [
+								"{{kc-host}}"
+							],
+							"port": "{{kc-https-port}}",
+							"path": [
+								"realms",
+								"{{target-realm}}",
+								"authz",
+								"protection",
+								"permission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4-RequestingParty-RequestRPT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"rpt\", jsonData.access_token);",
+									"pm.collectionVariables.set(\"rpt-refresh\", jsonData.refresh_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "urn:ietf:params:oauth:grant-type:uma-ticket",
+									"type": "text"
+								},
+								{
+									"key": "audience",
+									"value": "{{client-id}}",
+									"type": "text"
+								},
+								{
+									"key": "ticket",
+									"value": "{{permission-ticket}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/protocol/openid-connect/token",
+							"protocol": "https",
+							"host": [
+								"{{kc-host}}"
+							],
+							"port": "{{kc-https-port}}",
+							"path": [
+								"realms",
+								"{{target-realm}}",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5-RequestingParty-Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "{{client-id}}",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{client-secret}}",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "{{user-name-rp}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{user-password-rp}}",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/protocol/openid-connect/token",
+							"protocol": "https",
+							"host": [
+								"{{kc-host}}"
+							],
+							"port": "{{kc-https-port}}",
+							"path": [
+								"realms",
+								"{{target-realm}}",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6-RequestingParty-RequestRPT",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{user-token-rp}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "urn:ietf:params:oauth:grant-type:uma-ticket",
+									"type": "text"
+								},
+								{
+									"key": "audience",
+									"value": "{{client-id}}",
+									"type": "text"
+								},
+								{
+									"key": "ticket",
+									"value": "{{permission-ticket}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{kc-host}}:{{kc-https-port}}/realms/{{target-realm}}/protocol/openid-connect/token",
+							"protocol": "https",
+							"host": [
+								"{{kc-host}}"
+							],
+							"port": "{{kc-https-port}}",
+							"path": [
+								"realms",
+								"{{target-realm}}",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7-RequestingParty-RequestResourceWithRPT",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "kc-host",
+			"value": "YOUR_ADDRESS",
+			"type": "string"
+		},
+		{
+			"key": "kc-https-port",
+			"value": "18081",
+			"type": "string"
+		},
+		{
+			"key": "target-realm",
+			"value": "ELWebAPI-m",
+			"type": "string"
+		},
+		{
+			"key": "client-id",
+			"value": "el_rs",
+			"type": "string"
+		},
+		{
+			"key": "client-secret",
+			"value": "I9mwfSvG06xzXN45Wf1Gf5n70NCo9xsw",
+			"type": "string"
+		},
+		{
+			"key": "client-token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "client-id-rp",
+			"value": "health_care",
+			"type": "string"
+		},
+		{
+			"key": "client-secret-rp",
+			"value": "j6fdAL9vM9odkwFhllZlLxaZOasCKxcP",
+			"type": "string"
+		},
+		{
+			"key": "client-token-rp",
+			"value": ""
+		},
+		{
+			"key": "user-name",
+			"value": "el-data-owner",
+			"type": "string"
+		},
+		{
+			"key": "user-password",
+			"value": "password",
+			"type": "string"
+		},
+		{
+			"key": "user-token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "user-refresh-token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "user-name-rp",
+			"value": "health-helper",
+			"type": "string"
+		},
+		{
+			"key": "user-password-rp",
+			"value": "password",
+			"type": "string"
+		},
+		{
+			"key": "user-token-rp",
+			"value": ""
+		},
+		{
+			"key": "user-refresh-token-rp",
+			"value": ""
+		},
+		{
+			"key": "permission-ticket",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "owner-name",
+			"value": "el-data-owner",
+			"type": "string"
+		},
+		{
+			"key": "resource-id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "resource-name",
+			"value": "testResource4",
+			"type": "string"
+		},
+		{
+			"key": "share-target-user",
+			"value": "health-helper",
+			"type": "string"
+		},
+		{
+			"key": "share-target-client",
+			"value": "health_care",
+			"type": "string"
+		},
+		{
+			"key": "policy-id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "rpt",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "rpt-refresh",
+			"value": ""
+		}
+	]
+}

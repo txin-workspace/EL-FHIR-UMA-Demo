@@ -1,0 +1,501 @@
+<html>
+
+<head>
+    <!-- <link rel="stylesheet" href="../static/angular-material.min.css"> -->
+    <link rel="stylesheet"
+        href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css">
+    <script type="text/javascript">
+        var access_token, session_state, hash_token_arry;
+
+        try {
+            hash_token_arry = decodeURI(location.hash.substring(1)).split('&');
+        } catch (e) {
+            console.log('no login');
+            window.location.href = 'https://{{ health_am_host }}:{{ health_am_port }}/realms/{{ health_am_realm }}/protocol/openid-connect/auth?response_type=token&client_id={{ client_id }}&redirect_uri={{ client_redirect_url }}&flow=implicit&useNonce=true';
+        }
+        // hash_token_arry = decodeURI(location.hash.substring(1)).split('&');
+
+        // console.log(hash_token_arry.length);
+
+        if (hash_token_arry.length != 4) {
+            // window.location.href = 'https://150.65.173.141:8081/realms/ELWebAPI-m/protocol/openid-connect/auth?response_type=token&client_id=health_care_app&redirect_uri=http://150.65.173.141:11000/index&flow=implicit&useNonce=true';
+            window.location.href = 'https://{{ health_am_host }}:{{ health_am_port }}/realms/{{ health_am_realm }}/protocol/openid-connect/auth?response_type=token&client_id={{ client_id }}&redirect_uri={{ client_redirect_url }}&flow=implicit&useNonce=true';
+        }
+
+        hash_token_arry.forEach(
+            function check_state(element) {
+                e_array = element.split('=');
+
+                // console.log(e_array.length);
+
+                if (e_array.length != 2 || e_array[0] == '' || e_array[1] == '') {
+                    // window.location.href = 'https://150.65.173.141:8081/realms/ELWebAPI-m/protocol/openid-connect/auth?response_type=token&client_id=health_care_app&redirect_uri=http://150.65.173.141:11000/index&flow=implicit&useNonce=true';
+                    window.location.href = 'https://{{ health_am_host }}:{{ health_am_port }}/realms/{{ health_am_realm }}/protocol/openid-connect/auth?response_type=token&client_id={{ client_id }}&redirect_uri={{ client_redirect_url }}&flow=implicit&useNonce=true';
+                }
+
+                if (e_array[0] === 'session_state') {
+                    // console.log(e_array);
+                    session_state = e_array[1];
+                }
+                else if (e_array[0] === 'access_token') {
+                    // console.log(e_array);
+                    access_token = e_array[1];
+                }
+            }
+        );
+
+        obj_decoded_access_token = parseJwt(access_token);
+        // console.log(obj_decoded_access_token);
+
+        console.log('access_token == undefined', access_token == undefined);
+        console.log('session_state == undefined', session_state == undefined);
+        console.log("! obj_decoded_access_token.hasOwnProperty('exp')", !obj_decoded_access_token.hasOwnProperty('exp'));
+        console.log("obj_decoded_access_token.exp <= Math.round(+new Date()/1000)", obj_decoded_access_token.exp <= Math.round(+new Date() / 1000), obj_decoded_access_token.exp, Math.round(+new Date() / 1000));
+        console.log("! obj_decoded_access_token.hasOwnProperty('azp')", !obj_decoded_access_token.hasOwnProperty('azp'));
+        // console.log("obj_decoded_access_token.exp != 'health_care_app'", obj_decoded_access_token.azp != 'health_care_app');
+        console.log("obj_decoded_access_token.exp != '{{ client_id }}'", obj_decoded_access_token.azp != '{{ client_id }}');
+        console.log("! obj_decoded_access_token.hasOwnProperty('iss')", !obj_decoded_access_token.hasOwnProperty('iss'));
+        // console.log("! obj_decoded_access_token.iss == 'https://150.65.173.141:8081/realms/ELWebAPI-m'", !obj_decoded_access_token.iss == 'https://150.65.173.141:8081/realms/ELWebAPI-m');
+        console.log("! obj_decoded_access_token.iss == 'https://{{ health_am_host }}:{{ health_am_port }}/realms/{{ health_am_realm }}'", !obj_decoded_access_token.iss == 'https://{{ health_am_host }}:{{ health_am_host }}/realms/{{ health_am_realm }}');
+
+        console.log(access_token == undefined ||
+            session_state == undefined ||
+            !obj_decoded_access_token.hasOwnProperty('exp') ||
+            obj_decoded_access_token.exp <= Math.round(+new Date() / 1000) ||
+            !obj_decoded_access_token.hasOwnProperty('azp') ||
+            // obj_decoded_access_token.azp != 'health_care_app' ||
+            obj_decoded_access_token.azp != '{{ client_id }}' ||
+            !obj_decoded_access_token.hasOwnProperty('iss') ||
+            // obj_decoded_access_token.iss != 'https://150.65.173.141:8081/realms/ELWebAPI-m'
+            !obj_decoded_access_token.iss == 'https://{{ health_am_host }}:{{ health_am_port }}/realms/{{ health_am_realm }}');
+
+        if (access_token == undefined ||
+            session_state == undefined ||
+            !obj_decoded_access_token.hasOwnProperty('exp') ||
+            obj_decoded_access_token.exp <= Math.round(+new Date() / 1000) ||
+            !obj_decoded_access_token.hasOwnProperty('azp') ||
+            // obj_decoded_access_token.azp != 'health_care_app' ||
+            obj_decoded_access_token.azp != '{{ client_id }}' ||
+            !obj_decoded_access_token.hasOwnProperty('iss') ||
+            // obj_decoded_access_token.iss != 'https://150.65.173.141:8081/realms/ELWebAPI-m'
+            !obj_decoded_access_token.iss == 'https://{{ health_am_host }}:{{ health_am_port }}/realms/{{ health_am_realm }}') {
+
+            // window.location.href = 'https://150.65.173.141:8081/realms/ELWebAPI-m/protocol/openid-connect/auth?response_type=token&client_id=health_care_app&redirect_uri=http://150.65.173.141:11000/index&flow=implicit&useNonce=true';
+            window.location.href = 'https://{{ health_am_host }}:{{ health_am_port }}/realms/{{ health_am_realm }}/protocol/openid-connect/auth?response_type=token&client_id={{ client_id }}&redirect_uri={{ client_redirect_url }}&flow=implicit&useNonce=true';
+        }
+
+        // console.log(Math.round(+new Date()/1000));
+
+        function parseJwt(token) {
+            var base64Url = token.split('.')[1];
+            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(
+                function (c) {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                }).join(''));
+
+            return JSON.parse(jsonPayload);
+        }
+
+    </script>
+
+    <style>
+        .center {
+            /* display: block; */
+            text-align: center;
+            width: auto;
+            height: auto;
+        }
+
+        .fram {
+            /* display: inline-block; */
+            float: left;
+            width: 45%;
+            height: 90%;
+            margin-left: 2.5%;
+            margin-right: 2.5%;
+        }
+
+        iframe.page {
+            height: 100%;
+            width: 100%;
+        }
+
+        .health_props {
+            margin-left: 20px;
+        }
+
+        /* .health_p{
+                margin-left: 20px;
+            } */
+        .patient {
+            margin: 1px;
+            padding-left: 10px;
+        }
+
+        .bg {
+            margin-bottom: 2px;
+            margin-bottom: 2px;
+            padding: 1px;
+            background-color: gray;
+        }
+
+        .content {
+            background-color: white;
+        }
+
+        h4 {
+            margin-bottom: 3px;
+        }
+
+        .info {
+            overflow: scroll;
+        }
+
+        .hc {
+            /* height: 30%; */
+            height: 62%;
+        }
+
+        .pat {
+            margin-bottom: 10px;
+            /* height: 10%; */
+        }
+    </style>
+
+</head>
+
+
+<body style="background-color: #b7d5fba0;" ng-app="myApp">
+
+    <div>
+        <div style="float: left;" ng-controller="unameController">
+            <h1>FHIRアプリ画面</h1>
+            <h2>こんにちは **user_name**</h2>
+        </div>
+        <div style="float: right;">
+            <img src="../static/aged.png" width="100">
+        </div>
+    </div>
+
+    <hr style="clear: both;">
+
+    <!-- <button onclick="refresh()">refresh</button> -->
+
+
+    <h3>Patient Resource</h3>
+
+    <div class="info pat">
+        <div class="bg">
+            <div class="patient content" ng-controller="patient">
+                <div ng-repeat="info in health">
+                    <!-- <div>**info.hapi_id**</div> -->
+                    <!-- <details> -->
+                    <div>hapi_id: **info.hapi_id**</div>
+                    <div>hapi_type: **info.hapi_type**</div>
+                    <div>patient_id: **info.patient**</div>
+                    <div>resource_type:</div>
+                    <div style="margin-left: 15px;" ng-repeat="type in info.resource_type">
+                        **type**
+                    </div>
+                    <div>shared_with:</div>
+                    <div style="margin-left: 15px;" ng-repeat="(key, value) in info.proxy_share">
+                        **value.target**
+                        <md-button class="md-raised md-warn" ng-click="unshare_res('Patient', info.hapi_id, key)">
+                            unshare with this user
+                        </md-button>
+                    </div>
+                    <md-button class="md-raised md-warn" ng-click="share_res_dlg('Patient', info.hapi_id, $event)">
+                        share this resource
+                    </md-button>
+                    <hr>
+                    <!-- </details> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <h3>Observation Resource</h3>
+
+    <div class="info pat">
+        <div class="bg">
+            <div class="patient content" ng-controller="observation">
+
+                <div ng-repeat="info in devices">
+                    <!-- <div>**info.hapi_id**</div> -->
+                    <!-- <details> -->
+                    <div>hapi_id: **info.hapi_id**</div>
+                    <div>hapi_type: **info.hapi_type**</div>
+                    <div>patient_id: **info.patient**</div>
+                    <div>resource_type:</div>
+                    <div style="margin-left: 15px;" ng-repeat="type in info.resource_type">
+                        **type**
+                    </div>
+                    <div>shared_with:</div>
+                    <div style="margin-left: 15px;" ng-repeat="(key, value) in info.proxy_share">
+                        **value.target**
+                        <md-button class="md-raised md-warn" ng-click="unshare_res('Observation', info.hapi_id, key)">
+                            unshare with this user
+                        </md-button>
+                    </div>
+                    <md-button class="md-raised md-warn" ng-click="share_res_dlg('Observation', info.hapi_id, $event)">
+                        share this resource
+                    </md-button>
+                    <hr>
+                    <!-- </details> -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+
+    <!-- <script src="../static/angular.min.js"></script> -->
+    <!-- <script src="../static/angular-material.min.js"></script> -->
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
+
+
+
+    <script type="text/javascript">
+
+        var app = angular.module('myApp', ['ngMaterial']);
+
+        app.config(function ($interpolateProvider) {
+            $interpolateProvider.startSymbol('**').endSymbol('**');
+        });
+
+        app.controller('unameController', function ($scope) {
+            $scope.user_name = obj_decoded_access_token.preferred_username;
+        });
+
+        app.controller('patient', function ($scope, $http, $mdDialog) {
+            console.log('patient access');
+
+            $scope.isObject = function (obj) {
+                return angular.isObject(obj);
+            };
+
+            $scope.isArray = function (obj) {
+                return angular.isArray(obj);
+            };
+
+            $http({
+                method: 'GET',
+                url: '/patient',
+                headers: {
+                    'Access-Token': access_token
+                }
+            }).then(
+                function successCallback(response) {
+                    console.log('success: ', response);
+                    // array_p_name = Object.keys(response.data);
+                    $scope.health = response.data.patient;
+
+                },
+                function errorCallback(response) {
+                    console.log(response);
+                    alert('fhir rs server access 1 field');
+                }
+            );
+
+            $scope.unshare_res = function (res_type, res_id, policy_id) {
+                console.log(res_type);
+                console.log(res_id);
+                console.log(policy_id);
+                $http({
+                    method: 'DELETE',
+                    url: '/unshare',
+                    headers: {
+                        'Access-Token': access_token,
+                        'Content-Type': 'application/json'
+                    },
+                    data: JSON.stringify({
+                        'res_type': res_type,
+                        'res_id': res_id,
+                        'policy_id': policy_id
+                    })
+                }).then(
+                    function successCallback(response) {
+                        console.log(response);
+                        if (response.data === 'success') { location.reload(); }
+                        else { alert('unshare field'); }
+
+                    },
+                    function errorCallback(response) {
+                        alert('unshare field');
+                    }
+                );
+            };
+
+            $scope.share_res_dlg = function (res_type, res_id, ev) {
+                var confirm = $mdDialog.prompt()
+                    .title('share Patient resource')
+                    .textContent('share this resource with ?')
+                    .placeholder('Share With')
+                    .ariaLabel('User name')
+                    // .initialValue('Buddy')
+                    .targetEvent(ev)
+                    .required(true)
+                    .ok('Share!')
+                    .cancel('Cancel');
+
+                $mdDialog.show(confirm)
+                    .then(function (targetUser) {
+                        // $scope.status = 'You decided to name your dog ' + result + '.';
+                        console.log(targetUser, res_type, res_id, ev);
+                        $http({
+                            method: 'POST',
+                            url: '/share',
+                            headers: {
+                                'Access-Token': access_token,
+                                'Content-Type': 'application/json'
+                            },
+                            data: JSON.stringify({
+                                'res_type': res_type,
+                                'res_id': res_id,
+                                'target_user': targetUser
+                            })
+                        })
+                            .then(
+                                function successCallback(response) {
+                                    console.log(response);
+                                    if (response.data === 'success') { location.reload(); }
+                                    else { alert('share field'); }
+                                },
+                                function errorCallback(response) {
+                                    alert('share field');
+                                }
+                            );
+
+                    }, function () {
+                        console.log('cancel ---');
+                    }
+                    );
+            };
+        });
+
+        app.controller('observation', function ($scope, $http, $mdDialog) {
+            console.log('observation access');
+
+            $scope.isObject = function (obj) {
+                return angular.isObject(obj);
+            };
+
+            $scope.isArray = function (obj) {
+                return angular.isArray(obj);
+            };
+
+            $http({
+                method: 'GET',
+                url: '/observation',
+                headers: {
+                    'Access-Token': access_token
+                }
+            }).then(
+                function successCallback(response) {
+                    console.log('success: ', response);
+                    // array_p_name = Object.keys(response.data);
+                    $scope.devices = response.data.observation;
+                },
+                function errorCallback(response) {
+                    console.log(response);
+                    alert('fhir rs server access field');
+                }
+            );
+
+            $scope.unshare_res = function (res_type, res_id, policy_id) {
+                console.log(res_type);
+                console.log(res_id);
+                console.log(policy_id);
+                $http({
+                    method: 'DELETE',
+                    url: '/unshare',
+                    headers: {
+                        'Access-Token': access_token,
+                        'Content-Type': 'application/json'
+                    },
+                    data: JSON.stringify({
+                        'res_type': res_type,
+                        'res_id': res_id,
+                        'policy_id': policy_id
+                    })
+                }).then(
+                    function successCallback(response) {
+                        console.log(response);
+                        if (response.data === 'success') { location.reload(); }
+                        else { alert('unshare field'); }
+                    },
+                    function errorCallback(response) {
+                        alert('unshare field');
+                    }
+                );
+            };
+
+            $scope.share_res_dlg = function (res_type, res_id, ev) {
+                var confirm = $mdDialog.prompt()
+                    .title('share Observation resource')
+                    .textContent('share this resource with ?')
+                    .placeholder('Share With')
+                    .ariaLabel('User name')
+                    // .initialValue('Buddy')
+                    .targetEvent(ev)
+                    .required(true)
+                    .ok('Share!')
+                    .cancel('Cancel');
+
+                $mdDialog.show(confirm)
+                    .then(function (targetUser) {
+                        // $scope.status = 'You decided to name your dog ' + result + '.';
+                        console.log(targetUser, res_type, res_id, ev);
+                        $http({
+                            method: 'POST',
+                            url: '/share',
+                            headers: {
+                                'Access-Token': access_token,
+                                'Content-Type': 'application/json'
+                            },
+                            data: JSON.stringify({
+                                'res_type': res_type,
+                                'res_id': res_id,
+                                'target_user': targetUser
+                            })
+                        })
+                            .then(
+                                function successCallback(response) {
+                                    console.log(response);
+                                    if (response.data === 'success') { location.reload(); }
+                                    else { alert('share field'); }
+
+                                },
+                                function errorCallback(response) {
+                                    alert('share field');
+                                }
+                            );
+
+                    }, function () {
+                        console.log('cancel ---');
+                    }
+                    );
+            };
+
+        });
+
+
+    </script>
+
+
+</body>
+
+</html>
