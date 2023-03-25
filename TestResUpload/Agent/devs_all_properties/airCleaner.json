@@ -1,0 +1,38 @@
+{
+    "airFlowLevel": "auto",
+    "airPollutionDetection": false,
+    "smokeDetection": false,
+    "opticalCatalystOperationStatus": false,
+    "filterChangeNotice": true,
+    "operationStatus": false,
+    "installationLocation": "livingRoom",
+    "protocol": {
+        "type": "ECHONET_Lite v1.0",
+        "version": "Rel.A"
+    },
+    "id": "YLAAFYZYEDAHBDECPARNX",
+    "instantaneousElectricPowerConsumption": 17193,
+    "consumedCumulativeElectricEnergy": 915874.19,
+    "manufacturerFaultCode": "QSDWPWABUUU",
+    "currentLimit": 100,
+    "faultStatus": true,
+    "faultDescription": "OGFYLBGJBMORW",
+    "manufacturer": {
+        "code": "000126",
+        "descriptions": {
+            "ja": "\u682a\u5f0f\u4f1a\u793e\u6238\u4e0a\u96fb\u6a5f\u88fd\u4f5c\u6240",
+            "en": "Togami Electric Mfg.co.,Ltd."
+        }
+    },
+    "businessFacilityCode": "AWGGHGBGLAVPTGL",
+    "productCode": "RRIDGWDWIRCYGBX",
+    "serialNumber": "YGEDGKTPPSXUQGJWVHKV",
+    "productionDate": "2019-02-16",
+    "powerSaving": false,
+    "currentDateAndTime": "2009-08-22 06:22:13",
+    "powerLimit": 59951,
+    "hourMeter": {
+        "unit": "day",
+        "time": 3882378345
+    }
+}

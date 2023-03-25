@@ -1,0 +1,113 @@
+{
+    "onTimerReservation": false,
+    "timeOfOnTimer": "16:49:41",
+    "relativeTimeOfOnTimer": "05:43:08",
+    "offTimerReservation": false,
+    "timeOfOffTimer": "09:33:43",
+    "relativeTimeOfOffTimer": "09:51:37",
+    "coldWaterTemperatue2MaximumLevel": 4,
+    "warmWaterTemperatue2MaximumLevel": 18,
+    "operationMode": "heating",
+    "waterTemperature1": 50,
+    "waterTemperature2": "auto",
+    "outwardWaterTemperatureExit": 91,
+    "inwardWaterTemperatureEntrance": "undefined",
+    "specialOperation": "highPower",
+    "dailyTimer": "timer1",
+    "dailyTimer1": [
+        {
+            "startTime": "00:10:28",
+            "endTime": "20:12:11"
+        },
+        {
+            "startTime": "16:52:55",
+            "endTime": "13:37:19"
+        }
+    ],
+    "dailyTimer2": [
+        {
+            "startTime": "10:18:00",
+            "endTime": "14:44:07"
+        },
+        {
+            "startTime": "03:53:02",
+            "endTime": "06:52:25"
+        },
+        {
+            "startTime": "23:59:47",
+            "endTime": "10:57:21"
+        },
+        {
+            "startTime": "09:59:49",
+            "endTime": "23:57:56"
+        },
+        {
+            "startTime": "05:04:05",
+            "endTime": "08:25:47"
+        },
+        {
+            "startTime": "12:53:12",
+            "endTime": "07:29:32"
+        },
+        {
+            "startTime": "04:32:42",
+            "endTime": "19:24:42"
+        },
+        {
+            "startTime": "14:41:45",
+            "endTime": "02:26:40"
+        },
+        {
+            "startTime": "12:16:16",
+            "endTime": "01:32:11"
+        },
+        {
+            "startTime": "14:18:01",
+            "endTime": "14:02:02"
+        },
+        {
+            "startTime": "17:33:42",
+            "endTime": "07:05:01"
+        },
+        {
+            "startTime": "19:13:20",
+            "endTime": "06:41:54"
+        }
+    ],
+    "ratedPowerconsumption": {
+        "heating": 12772,
+        "cooling": 56106
+    },
+    "powerConsumptionMeasurementMethod": "instanceUnit",
+    "operationStatus": false,
+    "installationLocation": "veranda",
+    "protocol": {
+        "type": "ECHONET_Lite v1.0",
+        "version": "Rel.A"
+    },
+    "id": "FVJBEPUYMQSGQGGNT",
+    "instantaneousElectricPowerConsumption": 29473,
+    "consumedCumulativeElectricEnergy": 173999.651,
+    "manufacturerFaultCode": "IHRKQBCAUHWM",
+    "currentLimit": 49,
+    "faultStatus": true,
+    "faultDescription": "PABMBHJTOHHVQB",
+    "manufacturer": {
+        "code": "0000A3",
+        "descriptions": {
+            "ja": "\u4e2d\u90e8\u96fb\u529b\u30d1\u30ef\u30fc\u30b0\u30ea\u30c3\u30c9\u682a\u5f0f\u4f1a\u793e 2020/4/24 \u4e2d\u90e8\u96fb\u529b\u3231\u3088\u308a\u79fb\u7ba1",
+            "en": "Chubu Electric Power Grid Co.,Inc. Transferred from 'CHUBU Electric Power Co.,Inc.'(Apr 24, 2020)"
+        }
+    },
+    "businessFacilityCode": "IKORZUPYMVMWKVQYFNTALSGY",
+    "productCode": "BXWJPPFVNEKAHJPWKZ",
+    "serialNumber": "GXNDCRKHHUSQUDTVBBOETS",
+    "productionDate": "2021-11-17",
+    "powerSaving": false,
+    "currentDateAndTime": "2002-07-09 12:01:34",
+    "powerLimit": 50373,
+    "hourMeter": {
+        "unit": "day",
+        "time": 2657520166
+    }
+}

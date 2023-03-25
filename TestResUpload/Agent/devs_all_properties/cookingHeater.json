@@ -1,0 +1,77 @@
+{
+    "relativeTimeOfOffTimer": {
+        "leftStove": "15:16:40",
+        "rightStove": "03:14:22",
+        "farSideStove": "noSetting",
+        "roaster": "noSetting"
+    },
+    "childLock": false,
+    "radiantHeaterLock": false,
+    "heatingStatus": {
+        "leftStove": "heatingProhibited",
+        "rightStove": "heatingProhibited",
+        "farSideStove": "standingBy",
+        "roaster": "temporarilyStopped"
+    },
+    "heatingOperation": {
+        "leftStove": "noSetting",
+        "rightStove": "stopHeating",
+        "farSideStove": "startOrResumeHeating",
+        "roaster": "noSetting"
+    },
+    "heatingModesOfStoves": {
+        "leftStove": "noSetting",
+        "rightStove": "deepFrying",
+        "farSideStove": "deepFrying"
+    },
+    "heatingTemperature": {
+        "leftStove": 194,
+        "rightStove": "noSetting",
+        "farSideStove": "noSetting"
+    },
+    "heatingPower": {
+        "leftStove": {
+            "stateOfFlame": "noSetting"
+        },
+        "rightStove": {
+            "stateOfFlame": "noSetting"
+        },
+        "farSideStove": {
+            "wattage": 761
+        },
+        "roaster": {
+            "level": 10
+        }
+    },
+    "operationStatus": true,
+    "installationLocation": "WashRoom",
+    "protocol": {
+        "type": "ECHONET_Lite v1.0",
+        "version": "Rel.A"
+    },
+    "id": "BMBNGCRLAO",
+    "instantaneousElectricPowerConsumption": 31355,
+    "consumedCumulativeElectricEnergy": 857026.208,
+    "manufacturerFaultCode": "ZHGJRGHYPEHKGLBJ",
+    "currentLimit": 73,
+    "faultStatus": true,
+    "faultDescription": "DMZWBOHLNFAPXFEOZPVN",
+    "manufacturer": {
+        "code": "000071",
+        "descriptions": {
+            "ja": "\u682a\u5f0f\u4f1a\u793e\u65e5\u672c\u7523\u696d",
+            "en": "NIHON SANGYO CO.,LTD."
+        }
+    },
+    "businessFacilityCode": "OYLWSRWIGGIRKUGSWUHNGIMU",
+    "productCode": "MUUJEHBFLHKSORBEDRCV",
+    "serialNumber": "SNJVOMUHSSMZWFXQJF",
+    "productionDate": "2007-03-08",
+    "powerSaving": false,
+    "currentDateAndTime": "2012-07-07 22:37:06",
+    "powerLimit": 52628,
+    "hourMeter": {
+        "unit": "second",
+        "time": 3058983416
+    }
+}

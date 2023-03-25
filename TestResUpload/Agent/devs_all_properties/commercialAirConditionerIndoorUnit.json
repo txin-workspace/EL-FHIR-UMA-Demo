@@ -1,0 +1,46 @@
+{
+    "thermostatState": false,
+    "automaticOperationModeStatus": "circulation",
+    "operationMode": "cooling",
+    "targetTemperature": 4,
+    "roomTemperature": 82,
+    "groupInformation": 210,
+    "powerConsumption": "less150W",
+    "groupDeviceList": [
+        {
+            "deviceId": "TRFBPCSANTDCMUZC",
+            "deviceType": "SQNHVPVBUIJ"
+        }
+    ],
+    "operationStatus": false,
+    "installationLocation": "kitchen",
+    "protocol": {
+        "type": "ECHONET_Lite v1.0",
+        "version": "Rel.A"
+    },
+    "id": "NXILAUBIZULZZDC",
+    "instantaneousElectricPowerConsumption": 37670,
+    "consumedCumulativeElectricEnergy": 519196.712,
+    "manufacturerFaultCode": "ENATKTOVFOAPPLBIE",
+    "currentLimit": 93,
+    "faultStatus": true,
+    "faultDescription": "BNOGAGAXZEAQDLSAEHAUHGYGM",
+    "manufacturer": {
+        "code": "0000B4",
+        "descriptions": {
+            "ja": "\u30d5\u30a9\u30fc\u30a2\u30fc\u30eb\u30a8\u30ca\u30b8\u30fc\u682a\u5f0f\u4f1a\u793e 2020/3/31\u9000\u4f1a",
+            "en": "\uff14R Energy Corporation Withdrawn (Mar 31, 2020)"
+        }
+    },
+    "businessFacilityCode": "KYUJZDLVOG",
+    "productCode": "IEYYPDJDJHCQYFHV",
+    "serialNumber": "MODNJAQWCDYWIM",
+    "productionDate": "2021-00-20",
+    "powerSaving": true,
+    "currentDateAndTime": "2017-02-12 20:36:33",
+    "powerLimit": 36650,
+    "hourMeter": {
+        "unit": "second",
+        "time": 2379107640
+    }
+}

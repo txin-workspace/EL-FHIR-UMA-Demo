@@ -1,0 +1,48 @@
+{
+    "faultDescription": "obstacleCaught",
+    "timerOperationMode": false,
+    "openingSpeed": "medium",
+    "closingSpeed": "medium",
+    "operationTime": 11,
+    "openCloseOperation": "stop",
+    "degreeOfOpening": 99,
+    "blindAngle": 142,
+    "openCloseSpeed": "high",
+    "electricLock": false,
+    "remoteOperation": true,
+    "selectiveDegreeOfOpening": "slitDegreeOfOpening",
+    "openCloseStatus": "fullyClosed",
+    "slitDegreeOfOpening": 2,
+    "oneTimeOpeningSpeed": "high",
+    "oneTimeClosingSpeed": "medium",
+    "operationStatus": true,
+    "installationLocation": "garage",
+    "protocol": {
+        "type": "ECHONET_Lite v1.0",
+        "version": "Rel.A"
+    },
+    "id": "LEMQSSJBHTIUPWLGVBBNRJ",
+    "instantaneousElectricPowerConsumption": 268,
+    "consumedCumulativeElectricEnergy": 32539.857,
+    "manufacturerFaultCode": "JCPKCLDUAKZHKZWXK",
+    "currentLimit": 89,
+    "faultStatus": false,
+    "manufacturer": {
+        "code": "000001",
+        "descriptions": {
+            "ja": "\u682a\u5f0f\u4f1a\u793e\u65e5\u7acb\u88fd\u4f5c\u6240",
+            "en": "Hitachi, Ltd."
+        }
+    },
+    "businessFacilityCode": "LNWXCHHCCTR",
+    "productCode": "HCNNQKANMGY",
+    "serialNumber": "JRKUFSRKFISQTWN",
+    "productionDate": "2015-02-13",
+    "powerSaving": true,
+    "currentDateAndTime": "2011-03-23 23:44:22",
+    "powerLimit": 53451,
+    "hourMeter": {
+        "unit": "minute",
+        "time": 1671302519
+    }
+}

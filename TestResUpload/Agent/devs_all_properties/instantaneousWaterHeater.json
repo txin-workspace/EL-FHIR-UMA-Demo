@@ -1,0 +1,60 @@
+{
+    "onTimerReservation": true,
+    "onTimerTime": "09:43:36",
+    "onTimerRelativeTimeSettingValue": "13:40:19",
+    "hotWaterHeatingStatus": false,
+    "targetSuppliedWaterTemperature": 34,
+    "hotWaterWarmerSetting": false,
+    "bathWaterVolume4": 96,
+    "maximumAllowableWaterVolume4": 151,
+    "volume": 57,
+    "mute": true,
+    "targetAutomaticOperationTime": "17:13:16",
+    "remainingAutomaticOperationTime": "limitless",
+    "targetBathWaterTemperature": 73,
+    "bathWaterHeatingStatus": false,
+    "automaticBathOperation": true,
+    "targetBathAdditionalBoilupOperation": true,
+    "bathHotWaterAddition": false,
+    "bathLukewarmWaterFunction": true,
+    "bathWaterVolume1": 52,
+    "bathWaterVolume2": 8,
+    "bathroomPriority": true,
+    "showerHotWaterSupplyStatus": true,
+    "kitchenHotWaterSupplyStatus": false,
+    "hotWaterWarmerOnTimerReservationSetting": false,
+    "targetHotWaterWarmerOnTimerTime": "17:59:57",
+    "bathWaterVolume3": 40282,
+    "bathOperationStatus": "noOperation",
+    "operationStatus": true,
+    "installationLocation": "room",
+    "protocol": {
+        "type": "ECHONET_Lite v1.0",
+        "version": "Rel.A"
+    },
+    "id": "NEJDBXODRSPESKYTZLSXCG",
+    "instantaneousElectricPowerConsumption": 30435,
+    "consumedCumulativeElectricEnergy": 564317.49,
+    "manufacturerFaultCode": "NRLQYMWHVDBR",
+    "currentLimit": 4,
+    "faultStatus": false,
+    "faultDescription": "SSSWPPMSELJVRAMTQ",
+    "manufacturer": {
+        "code": "000080",
+        "descriptions": {
+            "ja": "\u7530\u6df5\u96fb\u6a5f\u682a\u5f0f\u4f1a\u793e",
+            "en": "TABUCHI ELECTRIC Co.,Ltd."
+        }
+    },
+    "businessFacilityCode": "BOYDPZDGNFLMBFUEPAIBGZBBS",
+    "productCode": "WEGCAUDBXQQS",
+    "serialNumber": "QNNIBJTZVCVXOC",
+    "productionDate": "2007-11-25",
+    "powerSaving": true,
+    "currentDateAndTime": "2003-05-10 23:53:55",
+    "powerLimit": 25919,
+    "hourMeter": {
+        "unit": "minute",
+        "time": 2201627747
+    }
+}

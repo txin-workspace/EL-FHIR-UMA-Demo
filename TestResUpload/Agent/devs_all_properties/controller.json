@@ -1,0 +1,67 @@
+{
+    "controllerId": "PSYIZURITWUNEJRARBRKVVFH",
+    "numberOfDevices": 59505,
+    "deviceList": [
+        {
+            "deviceId": "MGJIDAAYPUHYYWV",
+            "deviceType": "QTNMADRSNGPVUX",
+            "connection": "disconnected",
+            "manufactureCode": "OQUCOKXGOFCBSQGDNURZMFXAS"
+        },
+        {
+            "deviceId": "CYHOHLEHENWCDI",
+            "deviceType": "EJWMTXRXELZEWJXKAX",
+            "connection": "notRegistered",
+            "manufactureCode": "FGNREHVMJRGZCBDIKFTFTJ"
+        },
+        {
+            "deviceId": "IOFJPRNAVTOZ",
+            "deviceType": "HRPDFJSPBLIRJ",
+            "connection": "disconnected",
+            "manufactureCode": "VNQCLAFFXNSRPSY"
+        },
+        {
+            "deviceId": "PHCQUCGNXQNUOAM",
+            "deviceType": "CDQQDWUVHVMFKAPBXFO",
+            "connection": "connected",
+            "manufactureCode": "NBFOZZXWYNWYGRAXH"
+        },
+        {
+            "deviceId": "JURLOBYGOYVM",
+            "deviceType": "KQPKHQLQAQCKCHTETSR",
+            "connection": "disconnected",
+            "manufactureCode": "GIVCRRGAJJB"
+        }
+    ],
+    "operationStatus": false,
+    "installationLocation": "bathRoom ",
+    "protocol": {
+        "type": "ECHONET_Lite v1.0",
+        "version": "Rel.A"
+    },
+    "id": "ISGLDGURCARSLTMBAKBZSG",
+    "instantaneousElectricPowerConsumption": 19526,
+    "consumedCumulativeElectricEnergy": 30762.765,
+    "manufacturerFaultCode": "EINCRVIMJQGAESPHYLKCXPON",
+    "currentLimit": 61,
+    "faultStatus": true,
+    "faultDescription": "XHPMQMKKSLIMXWFJSVOUUTPOE",
+    "manufacturer": {
+        "code": "00001B",
+        "descriptions": {
+            "ja": "\u6771\u829d\u30e9\u30a4\u30c6\u30c3\u30af\u682a\u5f0f\u4f1a\u793e",
+            "en": "TOSHIBA LIGHTING & TECHNOLOGY CORPORATION"
+        }
+    },
+    "businessFacilityCode": "XPFBPSERZN",
+    "productCode": "MTISWWPBIHHV",
+    "serialNumber": "MJTRDFLFFURIPGPGETH",
+    "productionDate": "2001-03-19",
+    "powerSaving": true,
+    "currentDateAndTime": "2020-04-15 14:25:55",
+    "powerLimit": 60966,
+    "hourMeter": {
+        "unit": "hour",
+        "time": 2517009939
+    }
+}

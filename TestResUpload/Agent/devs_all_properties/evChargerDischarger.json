@@ -1,0 +1,88 @@
+{
+    "dischargeableCapacity1": 821150255,
+    "dischargeableCapacity2": 722.2,
+    "remainingDischargeableCapacity1": 270212926,
+    "remainingDischargeableCapacity2": 1815.6,
+    "remainingDischargeableCapacity3": 95,
+    "ratedChargeElectricPower": 853881395,
+    "ratedDischargeElectricPower": 647549121,
+    "chargeDischargeStatus": "notConnected",
+    "minimumAndMaximumChargingElectricPower": {
+        "minimumElectricPower": 787379242,
+        "maximumElectricPower": 708587487
+    },
+    "minimumAndMaximumDischargingElectricPower": {
+        "minimumElectricPower": 233097443,
+        "maximumElectricPower": 498191660
+    },
+    "minimumAndMaximumChargingCurrent": {
+        "minimumCurrent": 867.1,
+        "maximumCurrent": 2243.1
+    },
+    "minimumAndMaximumDischargingCurrent": {
+        "minimumCurrent": 2196.3,
+        "maximumCurrent": 2231.8
+    },
+    "equipmentType": "dc_bb_discharge",
+    "chargeableCapacity": 603626764,
+    "remainingChargeableCapacity": 637586051,
+    "usedCapacity1": 858418342,
+    "usedCapacity2": 2999.4,
+    "ratedVoltage": 23410,
+    "instantaneousElectricPower": 268473077,
+    "instantaneousCurrent": -2069.3,
+    "instantaneousVoltage": 22051,
+    "cumulativeDischargingElectricEnergy": 854257.841,
+    "cumulativeChargingElectricEnergy": 579487.352,
+    "operationMode": "standby",
+    "powerSystemInterconnectionStatus": "reversePowerFlowNotAcceptable",
+    "chargingMethod": "v2G",
+    "dischargingMethod": "designatedElectricPower",
+    "purchasingElectricPower": 749934624,
+    "reInterconnectionPermission": "permitted",
+    "chargingDischargingElectricPower": 913588103,
+    "remainingCapacity1": 687117012,
+    "remainingCapacity2": 1053.1,
+    "remainingCapacity3": 66,
+    "maintenanceStatus": "notNecessary",
+    "vehicleId": "BBAIEFNQQHKIVR",
+    "targetChargingElectricEnergy1": 739789732,
+    "targetChargingElectricEnergy2": 478.3,
+    "targetDischargingElectricEnergy": 944518389,
+    "chargingElectricPower": 840490439,
+    "dischargingElectricPower": 602565683,
+    "chargingCurrent": 699.2,
+    "dischargingCurrent": 1058.8,
+    "ratedVoltageOfIndependentOperation": 14278,
+    "operationStatus": true,
+    "installationLocation": "stairway",
+    "protocol": {
+        "type": "ECHONET_Lite v1.0",
+        "version": "Rel.A"
+    },
+    "id": "DRDQKTNFNWQBYT",
+    "instantaneousElectricPowerConsumption": 19009,
+    "consumedCumulativeElectricEnergy": 495543.976,
+    "manufacturerFaultCode": "LCLECNUZRDSI",
+    "currentLimit": 22,
+    "faultStatus": true,
+    "faultDescription": "RCMWOQFWAJHTXZECWG",
+    "manufacturer": {
+        "code": "000105",
+        "descriptions": {
+            "ja": "\u4e09\u83f1\u96fb\u6a5f\u7167\u660e\u682a\u5f0f\u4f1a\u793e",
+            "en": "Mitsubishi Electric Lighting Corporation"
+        }
+    },
+    "businessFacilityCode": "PCYAVUJCULBVTG",
+    "productCode": "JRZNNOSLHOIJSJQQHLDYZKJM",
+    "serialNumber": "CRDEORUPIYRFEJXCTQHX",
+    "productionDate": "2003-00-16",
+    "powerSaving": true,
+    "currentDateAndTime": "2020-00-25 08:12:57",
+    "powerLimit": 14991,
+    "hourMeter": {
+        "unit": "second",
+        "time": 4275352291
+    }
+}

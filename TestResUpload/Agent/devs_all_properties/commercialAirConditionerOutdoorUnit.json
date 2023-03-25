@@ -1,0 +1,66 @@
+{
+    "specialState": true,
+    "ratedPowerConsumption": {
+        "cooling": "unsupported",
+        "heating": 500
+    },
+    "outdoorTemperature": "unmeasurable",
+    "groupInformation": 102,
+    "powerConsumption": 964969194,
+    "powerConsumptionWillBeSaved": 1614066773,
+    "powerConsumptionLimit": "canceling",
+    "restrictedMinimumPowerConsumption": 2127898292,
+    "groupDeviceList": [
+        {
+            "deviceId": "MDMSRMFNRGFQRZEFZUUFWO",
+            "deviceType": "WSROSGPDUYCWXGO"
+        },
+        {
+            "deviceId": "ZHODYAZKWNFY",
+            "deviceType": "MDHIBQKQVGDBNNAWQTQJAWNLO"
+        },
+        {
+            "deviceId": "DIBHZWSIQSFBZMNPBNM",
+            "deviceType": "LOTCOZHQYNBQVUGAA"
+        },
+        {
+            "deviceId": "ICXZWGLHVYSSVTHDTKOXSLX",
+            "deviceType": "FBWJDABMDSDOVA"
+        },
+        {
+            "deviceId": "GIWNVKQVCIC",
+            "deviceType": "WQJWXEPGSQPIQACUWHYN"
+        }
+    ],
+    "operationStatus": true,
+    "installationLocation": "frontDoor",
+    "protocol": {
+        "type": "ECHONET_Lite v1.0",
+        "version": "Rel.A"
+    },
+    "id": "LDUFQUJTFZUBOCWVNFOU",
+    "instantaneousElectricPowerConsumption": 43127,
+    "consumedCumulativeElectricEnergy": 625667.731,
+    "manufacturerFaultCode": "PVWIDKHWRJMCHUD",
+    "currentLimit": 58,
+    "faultStatus": true,
+    "faultDescription": "PDKXTIAAOO",
+    "manufacturer": {
+        "code": "0000C1",
+        "descriptions": {
+            "ja": "\u901a\u7814\u96fb\u6c17\u5de5\u696d\u682a\u5f0f\u4f1a\u793e",
+            "en": "Tsuken Electric Ind Co., Ltd."
+        }
+    },
+    "businessFacilityCode": "QEDZBZBULBUHISJYYJ",
+    "productCode": "MEGYAFQUDTSLYSQPNRLG",
+    "serialNumber": "ZYPOURGHPFOUAQLOAWECCQ",
+    "productionDate": "2010-10-14",
+    "powerSaving": false,
+    "currentDateAndTime": "2015-03-25 05:25:48",
+    "powerLimit": 63630,
+    "hourMeter": {
+        "unit": "hour",
+        "time": 655674555
+    }
+}
