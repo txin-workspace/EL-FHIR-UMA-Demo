@@ -81,20 +81,16 @@
 * http
 * 役割: ECHONET Lite Resource Server(el_server_rs)のWeb画面
 * share: 
-	
-	user_name
-	
-	例: health-helper
+	- user_name
+	- 例 health-helper
 
 ### health_rs_web
 * port: 12000
 * http
 * 役割: FHIR Resource Server(health_server_rs)のWeb画面
 * share: 
-	
-	domain_name:user_name
-	
-	例: rs-elwenapi:health-helper
+	- domain_name:user_name
+	- 例 rs-elwebapi:health-helper
 
 ### demo_health_care_app
 * port: 111000
