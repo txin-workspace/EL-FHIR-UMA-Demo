@@ -1,5 +1,7 @@
 # ECHONET Lite Web API - FHIR UMA連携DEMO
 
+#### 参考：https://echonet.jp/web_api_guideline/
+
 #### **!! dockerとdocker composeは必要**
 
 #### PostmanCollectionsというフォルダにはPostman用の設定ファイル、start_demo.shによって.jsonを生成する
