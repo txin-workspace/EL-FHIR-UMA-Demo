@@ -1,7 +1,4 @@
 <script>
-    // var access_token, session_state;
-
-    // var hash_token_arry = decodeURI(location.hash.substring(1)).split('&');
     var access_token, session_state, hash_token_arry;
 
     try {
@@ -12,10 +9,7 @@
         window.location.href = 'https://{{ el_am_host }}:{{ el_am_port }}/realms/{{ el_am_realm }}/protocol/openid-connect/auth?response_type=token&client_id={{ client_id }}&redirect_uri={{ client_redirect_url }}&flow=implicit&useNonce=true';
     }
 
-    // console.log(hash_token_arry.length);
-
     if (hash_token_arry.length != 4) {
-        // window.location.href = 'https://150.65.173.141:8081/realms/ELWebAPI-m/protocol/openid-connect/auth?response_type=token&client_id=health_care_app&redirect_uri=http://150.65.173.141:11000/index&flow=implicit&useNonce=true';
         window.location.href = 'https://{{ el_am_host }}:{{ el_am_port }}/realms/{{ el_am_realm }}/protocol/openid-connect/auth?response_type=token&client_id={{ client_id }}&redirect_uri={{ client_redirect_url }}&flow=implicit&useNonce=true';
     }
 
@@ -23,36 +17,28 @@
         function check_state(element) {
             e_array = element.split('=');
 
-            // console.log(e_array.length);
-
             if (e_array.length != 2 || e_array[0] == '' || e_array[1] == '') {
-                // window.location.href = 'https://150.65.173.141:8081/realms/ELWebAPI-m/protocol/openid-connect/auth?response_type=token&client_id=health_care_app&redirect_uri=http://150.65.173.141:11000/index&flow=implicit&useNonce=true';
                 window.location.href = 'https://{{ el_am_host }}:{{ el_am_port }}/realms/{{ el_am_realm }}/protocol/openid-connect/auth?response_type=token&client_id={{ client_id }}&redirect_uri={{ client_redirect_url }}&flow=implicit&useNonce=true';
             }
 
             if (e_array[0] === 'session_state') {
-                // console.log(e_array);
                 session_state = e_array[1];
             }
             else if (e_array[0] === 'access_token') {
-                // console.log(e_array);
                 access_token = e_array[1];
             }
         }
     );
 
     obj_decoded_access_token = parseJwt(access_token);
-    // console.log(obj_decoded_access_token);
 
     console.log('access_token == undefined', access_token == undefined);
     console.log('session_state == undefined', session_state == undefined);
     console.log("! obj_decoded_access_token.hasOwnProperty('exp')", !obj_decoded_access_token.hasOwnProperty('exp'));
     console.log("obj_decoded_access_token.exp <= Math.round(+new Date()/1000)", obj_decoded_access_token.exp <= Math.round(+new Date() / 1000), obj_decoded_access_token.exp, Math.round(+new Date() / 1000));
     console.log("! obj_decoded_access_token.hasOwnProperty('azp')", !obj_decoded_access_token.hasOwnProperty('azp'));
-    // console.log("obj_decoded_access_token.exp != 'health_care_app'", obj_decoded_access_token.azp != 'health_care_app');
     console.log("obj_decoded_access_token.exp != '{{ client_id }}'", obj_decoded_access_token.azp != '{{ client_id }}');
     console.log("! obj_decoded_access_token.hasOwnProperty('iss')", !obj_decoded_access_token.hasOwnProperty('iss'));
-    // console.log("! obj_decoded_access_token.iss == 'https://150.65.173.141:8081/realms/ELWebAPI-m'", !obj_decoded_access_token.iss == 'https://150.65.173.141:8081/realms/ELWebAPI-m');
     console.log("! obj_decoded_access_token.iss == 'https://{{ el_am_host }}:{{ el_am_port }}/realms/{{ el_am_realm }}'", !obj_decoded_access_token.iss == 'https://{{ el_am_host }}:{{ el_am_host }}/realms/{{ el_am_realm }}');
 
     console.log(access_token == undefined ||
@@ -60,10 +46,8 @@
         !obj_decoded_access_token.hasOwnProperty('exp') ||
         obj_decoded_access_token.exp <= Math.round(+new Date() / 1000) ||
         !obj_decoded_access_token.hasOwnProperty('azp') ||
-        // obj_decoded_access_token.azp != 'health_care_app' ||
         obj_decoded_access_token.azp != '{{ client_id }}' ||
         !obj_decoded_access_token.hasOwnProperty('iss') ||
-        // obj_decoded_access_token.iss != 'https://150.65.173.141:8081/realms/ELWebAPI-m'
         !obj_decoded_access_token.iss == 'https://{{ el_am_host }}:{{ el_am_port }}/realms/{{ el_am_realm }}');
 
     if (access_token == undefined ||
@@ -71,17 +55,13 @@
         !obj_decoded_access_token.hasOwnProperty('exp') ||
         obj_decoded_access_token.exp <= Math.round(+new Date() / 1000) ||
         !obj_decoded_access_token.hasOwnProperty('azp') ||
-        // obj_decoded_access_token.azp != 'health_care_app' ||
         obj_decoded_access_token.azp != '{{ client_id }}' ||
         !obj_decoded_access_token.hasOwnProperty('iss') ||
-        // obj_decoded_access_token.iss != 'https://150.65.173.141:8081/realms/ELWebAPI-m'
         !obj_decoded_access_token.iss == 'https://{{ el_am_host }}:{{ el_am_port }}/realms/{{ el_am_realm }}') {
 
-        // window.location.href = 'https://150.65.173.141:8081/realms/ELWebAPI-m/protocol/openid-connect/auth?response_type=token&client_id=health_care_app&redirect_uri=http://150.65.173.141:11000/index&flow=implicit&useNonce=true';
         window.location.href = 'https://{{ el_am_host }}:{{ el_am_port }}/realms/{{ el_am_realm }}/protocol/openid-connect/auth?response_type=token&client_id={{ client_id }}&redirect_uri={{ client_redirect_url }}&flow=implicit&useNonce=true';
     }
 
-    // console.log(Math.round(+new Date()/1000));
 
     function parseJwt(token) {
         var base64Url = token.split('.')[1];
@@ -315,7 +295,6 @@
         }).then(
             function successCallback(response) {
                 console.log('success: ', response);
-                // array_p_name = Object.keys(response.data);
                 $scope.health = response.data.health;
 
             },
@@ -342,7 +321,6 @@
         }).then(
             function successCallback(response) {
                 console.log('success: ', response);
-                // array_p_name = Object.keys(response.data);
                 $scope.devices = response.data.devices;
             },
             function errorCallback(response) {
