@@ -51,7 +51,7 @@
 * Keycloak 20.0.3
 * port: 18083
 * https
-* 役割: Demo Application Server(demo_health_care_app)の認証サーバ
+* Demo Application Server(demo_health_care_app)の認証サーバ
 * デフォルトアカウント:
 	- admin:
 		+ user name: admin
@@ -64,7 +64,7 @@
 * hapi v6.2.2
 * port: 18888
 * http
-* 役割: FHIR Resource Server(health_server_rs)のデータベースとインタフェース
+* FHIR Resource Server(health_server_rs)のデータベースとインタフェース
 
 ### health_server_rs
 * port: 16000
@@ -74,12 +74,12 @@
 ### el_server_rs
 * port: 16001
 * http
-* 役割: ECHONET Lite Resource Server
+* ECHONET Lite Resource Server
 
 ### el_rs_web
 * port: 13000
 * http
-* 役割: ECHONET Lite Resource Server(el_server_rs)のWeb画面
+* ECHONET Lite Resource Server(el_server_rs)のWeb画面
 * share: 
 	- user_name
 	- 例 health-helper
@@ -87,7 +87,7 @@
 ### health_rs_web
 * port: 12000
 * http
-* 役割: FHIR Resource Server(health_server_rs)のWeb画面
+* FHIR Resource Server(health_server_rs)のWeb画面
 * share: 
 	- domain_name:user_name
 	- 例 rs-elwebapi:health-helper
@@ -95,7 +95,7 @@
 ### demo_health_care_app
 * port: 111000
 * http
-* 役割: Demo用Web画面
+* Demo用Web画面
 
 ### res_upload
-* 役割: テスト用リソースのアップロードプログラム
+* テスト用リソースのアップロードプログラム
