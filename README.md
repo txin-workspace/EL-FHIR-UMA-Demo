@@ -79,7 +79,7 @@
 ### health_server_rs
 * port: 16000
 * http
-* 役割: FHIR Resource Server
+* FHIR Resource Server
 
 ### el_server_rs
 * port: 16001
