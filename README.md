@@ -38,14 +38,14 @@
 	5. 「Users」画面から先ほど作成したアカウントをクリックし、「Credentials」タブをクリックし、パスワードを設定する
 	
 - **テスト用リソース作成(docker-compose.yamlにres_uploadを起動する場合は不要)**
-	- ./TestResUpload/Agentフォルダにあるプログラムを使う場合
+	- ./TestResUpload/Agentフォルダにあるプログラムを使う場合(Python3とrequestsパケージは必要)
 		- ECHONET Lite Resource Serverにリソース作成：
 			
-			`el.py YOUR_IPV4_ADDRESS EL_RS_PORT EL_RES_OWNER_NAME EL_RES_OWNER_PW`
+			`python3 el.py YOUR_IPV4_ADDRESS EL_RS_PORT EL_RES_OWNER_NAME EL_RES_OWNER_PW`
 			
 		- FHIR Resource Serverにリソース作成：
 			
-			`fhir.py YOUR_IPV4_ADDRESS FIHR_RS_PORT FHIR_RES_OWNER_NAME FHIR_RES_OWNER_PW`
+			`python3 fhir.py YOUR_IPV4_ADDRESS FIHR_RS_PORT FHIR_RES_OWNER_NAME FHIR_RES_OWNER_PW`
 			
 		- ./TestResUpload/Agent/devs_all_propertiesにはECHONET Lite Device Descriptionsを用いて生成したデバイス記述
 		
@@ -55,12 +55,35 @@
 		
 - **OIDCアカウントにシェアする場合、事前に対象アカウントがOIDCでログインしたことを確認しないと、シェアは失敗になる**
 
-1. リソースシェア
-	1. FHIRリソースサーバからDemoAppにシェア
-	2. ECHONET LiteリソースサーバからDemoAppにシェア
-2. DemoAppでリソースを確認
-3. リソースシェア解除
-4. DemoAppでリソースを確認
+1. **リソースシェア**
+	- FHIRリソースサーバからDemoAppにシェア
+		1. FHIRのWeb管理画面にアクセス
+		2. 画面に従ってログイン
+		3. 「share this resource」ボタンをクリックする
+		4. 「domain-name:user-name」の形式でシェア対象を指定する
+		5. 「Share!」ボタンをクリックするとシェアが成立する
+
+	- ECHONET LiteリソースサーバからDemoAppにシェア
+		1. ELのWeb管理画面にアクセス
+		2. 画面に従ってログイン
+		3. 「share this resource」ボタンをクリックする
+		4. シェア対象のユーザ名を入力する
+		5. 「Share!」ボタンをクリックするとシェアが成立する
+
+2. **DemoAppでリソースを確認**
+	1. DemoAppの画面にアクセス
+	2. 画面提示に従ってApp認証サーバにログインする
+	3. 「Login ECHONET Lite Web API Server」ボタンをクリックし、OIDC方式を選択してEL認証サーバにログインする
+	4. メイン画面でアクセス可能なリソースを一覧できる
+
+4. **リソースシェア解除**
+	- リソースサーバの画面で「unshare with this user」ボタンをクリックすると対象ユーザへのシェアが解除できる
+
+5. **リソース値変更**
+	- Postmanでリソースの値を変更できる
+
+6. **DemoAppでリソースを確認**
+	- DemoAppの画面をリフレッシュすると、最新状態で一覧できる
 
 ## 各部分の説明
 
