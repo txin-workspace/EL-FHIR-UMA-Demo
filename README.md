@@ -2,7 +2,7 @@
 
 #### **!! dockerとdcoker composeは必要**
 
-#### **!! dockerの設定によってsudoが必要な場合がある**
+#### **!! ホストマシンの設定によってsudoが必要な場合がある**
 
 #### **!! 「YOUR_IPV4_ADDRESS」はホストマシンのIPv4アドレス**
 
