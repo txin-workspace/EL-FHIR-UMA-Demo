@@ -19,7 +19,8 @@
 ### Demoの終了:
 	
 	(sudo) sh end_demo.sh
-
+	
+- sudoで起動した場合、終了するときsudoも必要
 
 ## 各部分の説明
 
