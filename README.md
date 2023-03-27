@@ -6,7 +6,7 @@
 
 #### **!! 「YOUR_IPV4_ADDRESS」はホストマシンのIPv4アドレス**
 
-#### PostmanCollectionsというフォルダにはPostman用の設定ファイル
+#### PostmanCollectionsというフォルダにはPostman用の設定ファイル、start_demo.shによって.jsonを生成する
 
 ## 利用方法：
 
