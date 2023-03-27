@@ -1,0 +1,791 @@
+{
+	"info": {
+		"_postman_id": "cf45c421-d45e-43cb-b052-6b3dc0ec4140",
+		"name": "ECHONETLite-RS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7693235"
+	},
+	"item": [
+		{
+			"name": "DeviceApi",
+			"item": [
+				{
+					"name": "Resource Owner",
+					"item": [
+						{
+							"name": "1-Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"owner-access-token\", jsonData.access_token);",
+											"pm.collectionVariables.set(\"owner-refresh-token\", jsonData.refresh_token);",
+											"pm.collectionVariables.set(\"owner-session_state\", jsonData.session_state);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/elapi/login?username={{owner-username}}&password={{owner-pw}}",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"elapi",
+										"login"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "{{owner-username}}"
+										},
+										{
+											"key": "password",
+											"value": "{{owner-pw}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2-Device Info List up",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Access-Token",
+										"value": "{{owner-access-token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/elapi/v1/devices",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"elapi",
+										"v1",
+										"devices"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "3-Device Properties",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Access-Token",
+										"value": "{{owner-access-token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/elapi/v1/devices/DEVICE_ID_HERE!!/properties",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"elapi",
+										"v1",
+										"devices",
+										"DEVICE_ID_HERE!!",
+										"properties"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "4-Device Properties share",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Access-Token",
+										"value": "{{owner-access-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"target\": \"health-helper\",\n    \"target_type\": \"user\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/elapi/v1/devices/share/DEVICE_ID_HERE!!/properties",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"elapi",
+										"v1",
+										"devices",
+										"share",
+										"DEVICE_ID_HERE!!",
+										"properties"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "5-Device Properties unshare",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Access-Token",
+										"value": "{{el-access-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"policy_id\": \"POLICY_ID_HERE!!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{host}}:{{port}}/elapi/v1/devices/share/DEVICE_ID_HERE!!/properties",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"elapi",
+										"v1",
+										"devices",
+										"share",
+										"DEVICE_ID_HERE!!",
+										"properties"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Requesting Party",
+					"item": [
+						{
+							"name": "1-Login_rp",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"rp-access-token\", jsonData.access_token);",
+											"pm.collectionVariables.set(\"rp-refresh-token\", jsonData.refresh_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/elapi/login?username={{rp-uname}}&password={{rp-pw}}",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"elapi",
+										"login"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "{{rp-uname}}"
+										},
+										{
+											"key": "password",
+											"value": "{{rp-pw}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2-SharedWithMe",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Access-Token",
+										"value": "{{rp-access-token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/elapi/v1/devices",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"elapi",
+										"v1",
+										"devices"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "3-Obtain Ticket",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"ticket\", jsonData.ticket);",
+											"pm.collectionVariables.set(\"am-url\", jsonData.as_url);",
+											"pm.collectionVariables.set(\"audience\", jsonData.audience);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/elapi/v1/devices/DEVICE_ID_HERE!!!/properties",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"elapi",
+										"v1",
+										"devices",
+										"DEVICE_ID_HERE!!!",
+										"properties"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "4-get RPT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"rpt\", jsonData.access_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{rp-access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "urn:ietf:params:oauth:grant-type:uma-ticket",
+											"type": "text"
+										},
+										{
+											"key": "audience",
+											"value": "{{audience}}",
+											"type": "text"
+										},
+										{
+											"key": "ticket",
+											"value": "{{ticket}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{am-url}}",
+									"protocol": "https",
+									"host": [
+										"{{am-url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "5-Obtain Resource",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "RPT",
+										"value": "{{rpt}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/elapi/v1/devices/DEVICE_ID_HERE!!!/properties",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"elapi",
+										"v1",
+										"devices",
+										"DEVICE_ID_HERE!!!",
+										"properties"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "HealthCareApi",
+			"item": [
+				{
+					"name": "Requesting Party",
+					"item": [
+						{
+							"name": "1-Login_rp",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"el-access-token\", jsonData.access_token);",
+											"pm.collectionVariables.set(\"el-refresh-token\", jsonData.refresh_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/elapi/login?username={{rp-uname}}&password={{rp-pw}}",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"elapi",
+										"login"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "{{rp-uname}}"
+										},
+										{
+											"key": "password",
+											"value": "{{rp-pw}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2-SharedWithMe",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"ticket\", jsonData.ticket);",
+											"pm.collectionVariables.set(\"am-url\", jsonData.as_url);",
+											"pm.collectionVariables.set(\"audience\", jsonData.audience);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Access-Token",
+										"value": "{{el-access-token}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/elapi/v1/devices",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"elapi",
+										"v1",
+										"devices"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "3-Obtain Ticket",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"ticket\", jsonData.ticket);",
+											"pm.collectionVariables.set(\"am-url\", jsonData.as_url);",
+											"pm.collectionVariables.set(\"audience\", jsonData.audience);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/elapi/v1/devices/DEVICE_ID_HERE!!!/properties",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"elapi",
+										"v1",
+										"devices",
+										"DEVICE_ID_HERE!!!",
+										"properties"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "4-get RPT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"pm.collectionVariables.set(\"rpt\", jsonData.access_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{rp-access-token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "urn:ietf:params:oauth:grant-type:uma-ticket",
+											"type": "text"
+										},
+										{
+											"key": "audience",
+											"value": "{{audience}}",
+											"type": "text"
+										},
+										{
+											"key": "ticket",
+											"value": "{{ticket}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{am-url}}",
+									"protocol": "https",
+									"host": [
+										"{{am-url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "5-Obtain Resource",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "RPT",
+										"value": "{{rpt}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://{{host}}:{{port}}/elapi/v1/devices/DEVICE_ID_HERE!!!/properties",
+									"protocol": "http",
+									"host": [
+										"{{host}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"elapi",
+										"v1",
+										"devices",
+										"DEVICE_ID_HERE!!!",
+										"properties"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "YOUR_ADDRESS",
+			"type": "string"
+		},
+		{
+			"key": "port",
+			"value": "16001",
+			"type": "string"
+		},
+		{
+			"key": "ticket",
+			"value": ""
+		},
+		{
+			"key": "am-url",
+			"value": ""
+		},
+		{
+			"key": "audience",
+			"value": ""
+		},
+		{
+			"key": "rpt",
+			"value": ""
+		},
+		{
+			"key": "el-access-token",
+			"value": ""
+		},
+		{
+			"key": "el-refresh-token",
+			"value": ""
+		},
+		{
+			"key": "el-session_state",
+			"value": ""
+		},
+		{
+			"key": "owner-username",
+			"value": "el-data-owner",
+			"type": "string"
+		},
+		{
+			"key": "owner-pw",
+			"value": "password",
+			"type": "string"
+		},
+		{
+			"key": "rp-uname",
+			"value": "health-helper",
+			"type": "string"
+		},
+		{
+			"key": "rp-pw",
+			"value": "password",
+			"type": "string"
+		},
+		{
+			"key": "rp-access-token",
+			"value": ""
+		},
+		{
+			"key": "rp-refresh-token",
+			"value": ""
+		},
+		{
+			"key": "owner-access-token",
+			"value": ""
+		},
+		{
+			"key": "owner-refresh-token",
+			"value": ""
+		},
+		{
+			"key": "owner-session_state",
+			"value": ""
+		}
+	]
+}
