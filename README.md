@@ -2,10 +2,6 @@
 
 #### **!! dockerとdcoker composeは必要**
 
-#### **!! ホストマシンの設定によってsudoが必要な場合がある**
-
-#### **!! 「YOUR_IPV4_ADDRESS」はホストマシンのIPv4アドレス**
-
 #### PostmanCollectionsというフォルダにはPostman用の設定ファイル、start_demo.shによって.jsonを生成する
 
 ## 利用方法：
@@ -13,6 +9,10 @@
 ### Demoの起動:
 
 	(sudo) sh start_demo.sh YOUR_IPV4_ADDRESS
+	
+- ホストマシンの設定によってsudoが必要な場合がある
+
+- 「YOUR_IPV4_ADDRESS」はホストマシンのIPv4アドレス
 
 ### Demoの終了:
 	
