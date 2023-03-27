@@ -25,7 +25,7 @@
 * Keycloak 20.0.3
 * port: 18081
 * https
-* 役割: ECHONET Lite Resource Server(el_server_rs)とECHONET Lite Resource Server WebApp(el_rs_web)の認証サーバ
+* ECHONET Lite Resource Server(el_server_rs)とECHONET Lite Resource Server WebApp(el_rs_web)の認証サーバ
 * デフォルトアカウント:
 	- admin:
 		+ user name: admin
@@ -38,7 +38,7 @@
 * Keycloak 20.0.3
 * port: 18082
 * https
-* 役割: FHIR Resource Server(health_server_rs)とFHIR Resource Server WebApp(health_rs_web)の認証サーバ
+* FHIR Resource Server(health_server_rs)とFHIR Resource Server WebApp(health_rs_web)の認証サーバ
 * デフォルトアカウント:
 	- admin:
 		+ user name: admin
