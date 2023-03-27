@@ -13,7 +13,6 @@
 	(sudo) sh start_demo.sh YOUR_IPV4_ADDRESS
 	
 - ホストマシンの設定によってsudoが必要な場合がある
-
 - 「YOUR_IPV4_ADDRESS」はホストマシンのIPv4アドレス
 
 ### Demoの終了:
@@ -21,6 +20,14 @@
 	(sudo) sh end_demo.sh
 	
 - sudoで起動した場合、終了するときsudoも必要
+
+### 起動後Browerでアクセスできるもの
+- EL認証サーバの管理画面: https://[YOUR_IPV4_ADDRESS]:18081
+- FHIR認証サーバの管理画面: https://[YOUR_IPV4_ADDRESS]:18082
+- DemoApp認証サーバの管理画面: https://[YOUR_IPV4_ADDRESS]:18083
+- DemoAppの画面: http://[YOUR_IPV4_ADDRESS]:11000
+- FHIRのWeb管理画面: http://[YOUR_IPV4_ADDRESS]:12000
+- ELのWeb管理画面: http://[YOUR_IPV4_ADDRESS]:13000
 
 ## 各部分の説明
 
@@ -82,7 +89,7 @@
 ### el_rs_web
 * port: 13000
 * http
-* ECHONET Lite Resource Server(el_server_rs)のWeb画面
+* ECHONET Lite Resource Server(el_server_rs)のWeb管理画面
 * share: 
 	- user_name
 	- 例 health-helper
@@ -90,7 +97,7 @@
 ### health_rs_web
 * port: 12000
 * http
-* FHIR Resource Server(health_server_rs)のWeb画面
+* FHIR Resource Server(health_server_rs)のWeb管理画面
 * share: 
 	- domain_name:user_name
 	- 例 rs-elwebapi:health-helper
