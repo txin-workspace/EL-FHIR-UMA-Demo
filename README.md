@@ -29,6 +29,39 @@
 - FHIRのWeb管理画面: http://[YOUR_IPV4_ADDRESS]:12000
 - ELのWeb管理画面: http://[YOUR_IPV4_ADDRESS]:13000
 
+### Demoの流れ
+- **アカウント作成(デフォルトアカウントを利用する場合は新規作成不要)**
+	1. 認証サーバの管理画面にアクセスし、Administration Consoleをクリックし、Adminアカウントでログインする
+	2. realmを選択、realmの管理画面に入る
+	3. 左側のメニューにある「Users」をクリックし、ユーザアカウントの管理画面に入る
+	4. 「Add user」ボタンをクリックし、必要な情報を入力してから「Create」ボタンでアカウントを作成する
+	5. 「Users」画面から先ほど作成したアカウントをクリックし、「Credentials」タブをクリックし、パスワードを設定する
+	
+- **テスト用リソース作成(docker-compose.yamlにres_uploadを起動する場合は不要)**
+	- ./TestResUpload/Agentフォルダにあるプログラムを使う場合
+		- ECHONET Lite Resource Serverにリソース作成：
+			
+			`el.py YOUR_IPV4_ADDRESS EL_RS_PORT EL_RES_OWNER_NAME EL_RES_OWNER_PW`
+			
+		- FHIR Resource Serverにリソース作成：
+			
+			`fhir.py YOUR_IPV4_ADDRESS FIHR_RS_PORT FHIR_RES_OWNER_NAME FHIR_RES_OWNER_PW`
+			
+		- ./TestResUpload/Agent/devs_all_propertiesにはECHONET Lite Device Descriptionsを用いて生成したデバイス記述
+		
+	- Postmanを使う場合
+		1. (start_demo.shでDemoを起動した後)./PostmanCollectionsフォルダにある.jsonファイルをPostmanみインポートする
+		2. インポートされた設定に利用してログイン->リソース作成
+		
+- **OIDCアカウントにシェアする場合、事前に対象アカウントがOIDCでログインしたことを確認しないと、シェアは失敗になる**
+
+1. リソースシェア
+	1. FHIRリソースサーバからDemoAppにシェア
+	2. ECHONET LiteリソースサーバからDemoAppにシェア
+2. DemoAppでリソースを確認
+3. リソースシェア解除
+4. DemoAppでリソースを確認
+
 ## 各部分の説明
 
 ### el_server_auth
@@ -40,9 +73,16 @@
 	- admin:
 		+ user name: admin
 		+ password: password
+		+ 管理者アカウント
 	- data-owner:
 		+ user name: el-data-owner
 		+ password: password
+		+ 所属Realm：ELWebAPI-m
+	- data-agent:
+		+ user name: el-pcha-agent
+		+ password: password
+		+ 所属Realm：ELWebAPI-m
+* Demo用Realm: ELWebAPI-m
 		
 ### health_server_auth
 * Keycloak 20.0.3
@@ -56,6 +96,12 @@
 	- data-owner:
 		+ user name: pcha-data-owner
 		+ password: password
+		+ 所属Realm：PCHA_HAPI
+	- data-agent:
+		+ user name: el-pcha-agent
+		+ password: password
+		+ 所属Realm：PCHA_HAPI
+* Demo用Realm: PCHA_HAPI
 
 ### app_server_auth
 * Keycloak 20.0.3
@@ -66,9 +112,11 @@
 	- admin:
 		+ user name: admin
 		+ password: password
-	- data-owner:
+	- data-requesting-party:
 		+ user name: health-helper
 		+ password: password
+		+ 所属Realm：HealthService
+* Demo用Realm: HealthService
 
 ### health_server_hapi
 * hapi v6.2.2
