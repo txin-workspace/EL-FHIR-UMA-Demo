@@ -84,7 +84,7 @@
 	- リソースサーバの画面で「unshare with this user」ボタンをクリックすると対象ユーザへのシェアが解除できる
 
 5. **リソース値変更**
-	- Postmanでリソースの値を変更できる
+	- ./PostmanCollectionsフォルダにあるJsonファイルをインポートしてPostmanでリソースの値を変更できる
 
 6. **DemoAppでリソースを確認**
 	- DemoAppの画面をリフレッシュすると、最新状態で一覧できる
