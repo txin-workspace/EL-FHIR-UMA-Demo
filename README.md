@@ -6,6 +6,8 @@
 
 #### PostmanCollectionsというフォルダにはPostman用の設定ファイル、start_demo.shによって.jsonを生成する
 
+![system](https://github.com/txin-workspace/EL-FHIR-UMA-Demo/blob/main/demo-sys-image.png)
+
 ## 利用方法
 
 ### Demoの起動
