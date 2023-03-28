@@ -91,9 +91,15 @@
 
 ## Demoの実行例
 - デフォルトアカウントを利用する
-	+ ELリソースの所有者は：el-data-owner
-	+ FHIRリソースの所有者は：pcha-data-owner
-	+ シェアする相手は：health-helper
+	+ ELリソースの所有者
+		- user name: el-data-owner
+		- password: password
+	+ FHIRリソースの所有者
+		- user name: pcha-data-owner
+		- password: password
+	+ シェアする相手
+		- user name: health-helper
+		- password: password
 	
 - res_uploadを利用してDemoを起動するとき、自動的にリソースを作成する
 
