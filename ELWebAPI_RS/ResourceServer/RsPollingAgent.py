@@ -69,7 +69,7 @@ def process_res_shared(sharedWithMe):
             if result != True:
                 raise Exception('Register health resource to el Keycloak server field') 
 
-            # TODO add res to dict
+            # add res to dict
             HealthApi.health_dict[res_info['patient']] = HealthApi.Health()
             HealthApi.health_dict[res_info['patient']].patient_id = res_info['patient']
             HealthApi.health_dict[res_info['patient']].resource_id = res_id
@@ -143,6 +143,7 @@ def process_res_unshared(sharedWithMe):
             
             p_share_id_list += res_info['proxy_share'].keys()
 
+        unshared_list = []
         for share_id in HealthApi.health_dict[p_id].sub_res_list.keys():
             if share_id in p_share_id_list:
                 continue
@@ -151,18 +152,22 @@ def process_res_unshared(sharedWithMe):
             # unshare in el am
             result, field_code = KeycloakAccess.unshare_resource(
                 TokenKeeper.agent_token, 
-                HealthApi.health_dict[res_info['patient']].sub_res_list[share_id].el_rs_code)
+                HealthApi.health_dict[p_id].sub_res_list[share_id].el_rs_code)
 
             if result != True:
                 Log.error('[Agent] delete policy field! {} {} {}'.format(
-                    HealthApi.health_dict[res_info['patient']].resource_id, 
-                    HealthApi.health_dict[res_info['patient']].sub_res_list[share_id].el_rs_code, 
+                    HealthApi.health_dict[p_id].resource_id, 
+                    HealthApi.health_dict[p_id].sub_res_list[share_id].el_rs_code, 
                     field_code))
                 continue
 
             # del local info
-            # unshared_list.append(share_id)
-            HealthApi.health_dict[res_info['patient']].sub_res_list.pop(share_id)
+            unshared_list.append(share_id)
+            # HealthApi.health_dict[res_info['patient']].sub_res_list.pop(share_id)
+            
+        for unshared_id in unshared_list:
+            if unshared_id in HealthApi.health_dict[p_id].sub_res_list:
+                HealthApi.health_dict[p_id].sub_res_list.pop(unshared_id)
 
     # Log.warning('[process_res_unshared] Finish')
 
