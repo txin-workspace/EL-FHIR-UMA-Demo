@@ -26,7 +26,7 @@ def job_polling_health_rs():
         except Exception as exc:
             Log.error('[update health rs resource info] {}'.format(exc))
 
-        sleep(5)
+        sleep(3)
 
 
 
