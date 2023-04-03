@@ -204,7 +204,7 @@
 	- 例 rs-elwebapi:health-helper
 
 ### demo_health_care_app
-* port: 111000
+* port: 11000
 * http
 * Demo用Web画面
 
