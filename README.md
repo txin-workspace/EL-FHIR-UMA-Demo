@@ -15,7 +15,7 @@
 	(sudo) sh start_demo.sh YOUR_IPV4_ADDRESS
 	
 - ホストマシンの設定によってsudoが必要な場合がある
-- 「YOUR_IPV4_ADDRESS」はホストマシンのIPv4アドレス
+- 「YOUR_IPV4_ADDRESS」はホストマシンのIPv4アドレス(127.0.0.1以外)
 
 ### Demoの終了
 	
