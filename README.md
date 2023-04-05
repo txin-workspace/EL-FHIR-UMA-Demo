@@ -90,6 +90,7 @@
 	- DemoAppの画面をリフレッシュすると、最新状態で一覧できる
 
 ## Demoの実行例
+詳しい操作はここに [スクリーンショットで説明](https://github.com/txin-workspace/EL-FHIR-UMA-Demo/blob/main/%E6%89%8B%E9%A0%86%E4%BE%8B.pdf)
 - デフォルトアカウントを利用する
 	+ ELリソースの所有者
 		- user name: el-data-owner
