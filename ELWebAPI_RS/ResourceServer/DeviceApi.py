@@ -104,8 +104,11 @@ def testAPI_devices():
         else:
             for resid in list_own_resid:
                 for dev_id in device_dict:
-                    if device_dict[dev_id].resource_id == resid or device_dict[dev_id].check_shared(uname) == True:
-                        return_list.append(make_device_info_owner(dev_id))
+#                     if device_dict[dev_id].resource_id == resid or device_dict[dev_id].check_shared(uname) == True:
+                    if device_dict[dev_id].resource_id != resid:
+                        continue
+
+                    return_list.append(make_device_info_owner(dev_id))
     
     return {
         'devices': return_list,
