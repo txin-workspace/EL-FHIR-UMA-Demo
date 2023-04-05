@@ -105,7 +105,7 @@ def testAPI_devices():
             for resid in list_own_resid:
                 for dev_id in device_dict:
                     if device_dict[dev_id].resource_id == resid or device_dict[dev_id].check_shared(uname) == True:
-                        return_list.append(make_device_info_owner(dev_id, resid))
+                        return_list.append(make_device_info_owner(dev_id))
     
     return {
         'devices': return_list,
@@ -463,17 +463,14 @@ def make_device_info(dev_id):
 
     return dev_info
 
-def make_device_info_owner(dev_id, res_id):
+def make_device_info_owner(dev_id):
     dev_info = {
         'id': dev_id,
         'deviceType': re.sub('\d', '', dev_id),
-        "protocol": {"type": "ECHONET_Lite v1.1", "version": "Rel.A"},
+        'protocol': {"type": "ECHONET_Lite v1.1", "version": "Rel.A"},
         'manufacturer': device_dict[dev_id].prop_list['manufacturer'],
-        'type': 'own' if device_dict[dev_id].resource_id == res_id else 'shared',
+        'shared': device_dict[dev_id].shared,
     }
-
-    if dev_info['type'] == 'own':
-        dev_info['shared'] = device_dict[dev_id].shared
 
     if 'co2Sensor' in dev_id:
         dev_info['deviceType'] = 'co2Sensor'
