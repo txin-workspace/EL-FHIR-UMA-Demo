@@ -145,11 +145,11 @@ def share_resource_hapi(header_auth: str, res_id, share_type, target_user):
     if share_type not in ['user', 'client']:
         return False, ''
 
-    response = UmaClient.keyclack.policy_create(
+    response = UmaClient.keyclack.policy_create_proxy(
         rs_config.am_host, rs_config.am_port, rs_config.realm_name,
         header_auth.replace('Bearer ',''), res_id,
         'users', rs_config.el_agent_id,
-        desc='{{"target_type":"{}", "target": "{}"}}'.format(share_type, target_user))
+        target_user)
     Log.print_response(response)
 
     if response.status_code != 200:
