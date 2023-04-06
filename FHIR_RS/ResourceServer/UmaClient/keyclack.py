@@ -270,6 +270,29 @@ def policy_create(am_host, am_port, realm_name, user_token, res_id, share_type, 
     return requests.post(url, headers=header, json=payload, verify=False)
 
 
+def policy_create_proxy(am_host, am_port, realm_name, user_token, res_id, share_type, share_target, target_user):
+    url = 'https://{}:{}/realms/{}/authz/protection/uma-policy/{}'.format(
+        am_host, am_port, realm_name, res_id)
+
+    header = {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache',
+        'Authorization': 'Bearer {}'.format(user_token)
+    }
+    
+    payload = {
+        'name': "policy-{}-{}-{}-{}-data_read".format(res_id, share_type, share_target, target_user),
+        'description': "policy, target resource:, share with: {}({}), permission scope: data_read".format(res_id, share_target, share_type),
+        share_type: [share_target],
+        'scopes': ['data_read']
+    }
+
+    Log.debug('[keyclack policy_create_proxy]\
+        \n\turl: {}\
+        \n\theader: {}\
+        \n\tpayload: {}'.format(url,header,payload))
+
+    return requests.post(url, headers=header, json=payload, verify=False)
 # def policy_read(client):
 #     url = 'https://{}:{}/realms/{}/authz/protection/uma-policy?{}={}'.format(
 #         am_host, am_port, realm_name, search_type, search_target)
