@@ -87,7 +87,7 @@ def main(args: list):
     global rs_uname
     global rs_pw
 
-    Log.info('parameter:\n\tfhir_rs_host:{}\n\tfhir_rs_port:{}\n\tfhir_uname:{}\n\tfhir_pw:{}'.format(
+    Log.info('parameter:\n\tel_rs_host:{}\n\tel_rs_port:{}\n\tel_uname:{}\n\tel_pw:{}'.format(
         args[1], args[2], args[3], args[4]
     ))
 
