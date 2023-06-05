@@ -264,7 +264,7 @@
                 },
                 function errorCallback(response) {
                     console.log(response);
-                    alert('fhir rs server access 1 field');
+                    alert('fhir rs server access 1 failed');
                 }
             );
 
@@ -286,10 +286,10 @@
                     function successCallback(response) {
                         console.log(response);
                         if (response.data === 'success') { location.reload(); }
-                        else { alert('unshare field'); }
+                        else { alert('unshare failed'); }
                     },
                     function errorCallback(response) {
-                        alert('unshare field');
+                        alert('unshare failed');
                     }
                 );
             };
@@ -324,10 +324,10 @@
                                 function successCallback(response) {
                                     console.log(response);
                                     if (response.data === 'success') { location.reload(); }
-                                    else { alert('share field'); }
+                                    else { alert('share failed'); }
                                 },
                                 function errorCallback(response) {
-                                    alert('share field');
+                                    alert('share failed');
                                 }
                             );
 
