@@ -109,6 +109,11 @@ def testAPI_devices():
                         continue
 
                     return_list.append(make_device_info_owner(dev_id))
+
+            for dev_id in device_dict:
+                if  device_dict[dev_id].check_shared(uname) == True:
+                    return_list.append(make_device_info(dev_id))
+
     
     return {
         'devices': return_list,
