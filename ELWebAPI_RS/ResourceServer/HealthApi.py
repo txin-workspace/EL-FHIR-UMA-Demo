@@ -175,7 +175,7 @@ def get_one_recorder_description(healthCareRecordId):
     resule, rpt_detail = KeycloakAccess.check_rpt(request.headers['RPT'])
 
     if resule == False:
-        Log.error('[check rpt] FIELD!!!')
+        Log.error('[check rpt] FAILED!!!')
         return return_permisson_ticket(healthCareRecordId)
 
     u_name = get_uname_from_jwt(request.headers['RPT'])
@@ -228,7 +228,7 @@ def get_one_recorder(healthCareRecordId):
     resule, rpt_detail = KeycloakAccess.check_rpt(request.headers['RPT'])
 
     if resule == False:
-        Log.error('[check rpt] FIELD!!!')
+        Log.error('[check rpt] FAILED!!!')
         return return_permisson_ticket(healthCareRecordId)
 
     u_name = get_uname_from_jwt(request.headers['RPT'])
@@ -316,7 +316,7 @@ def get_recorder_one_prop(healthCareRecordId, propertName):
     resule, rpt_detail = KeycloakAccess.check_rpt(request.headers['RPT'])
 
     if resule == False:
-        Log.error('[check rpt] FIELD!!!')
+        Log.error('[check rpt] FAILED!!!')
         return return_permisson_ticket(healthCareRecordId)
 
     u_name = get_uname_from_jwt(request.headers['RPT'])
@@ -360,7 +360,7 @@ def get_recorder_one_prop(healthCareRecordId, propertName):
 def return_permisson_ticket(hr_id):
     resule, ticket = KeycloakAccess.make_ticket(health_dict[hr_id].resource_id)
     if resule == False:
-        Log.error('[create ticket] FIELD!!!')
+        Log.error('[create ticket] FAILED!!!')
         abort(401)
     
     return {
