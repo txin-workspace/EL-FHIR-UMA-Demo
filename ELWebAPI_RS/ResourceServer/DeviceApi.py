@@ -85,7 +85,7 @@ def testAPI_devices():
     elif client == rs_config.web_client_id:
         result, list_own_resid = KeycloakAccess.check_own_resource(uname)
         if result != True:
-            Log.error('[get owner resource] FIELD!!')
+            Log.error('[get owner resource] FAILED!!')
 
         else:
             for resid in list_own_resid:
@@ -99,7 +99,7 @@ def testAPI_devices():
     elif client == rs_config.client_id:
         result, list_own_resid = KeycloakAccess.check_own_resource(uname)
         if result != True:
-            Log.error('[get owner resource] FIELD!!')
+            Log.error('[get owner resource] FAILED!!')
 
         else:
             for resid in list_own_resid:
@@ -142,7 +142,7 @@ def testAPI_search(device_id):
         resule, rpt_detail = KeycloakAccess.check_rpt(request.headers['RPT'])
 
         if resule == False:
-            Log.error('[check rpt] FIELD!!!')
+            Log.error('[check rpt] FAILED!!!')
             return retuen_permisson_ticket(device_id)
         
         if rpt_detail['active'] == False:
@@ -171,7 +171,7 @@ def testAPI_search(device_id):
         # check my own
         result, list_own_resid = KeycloakAccess.check_own_resource(uid)
         if result != True:
-            Log.error('[get owner resource] FIELD!!')
+            Log.error('[get owner resource] FAILED!!')
             abort(401)
 
         # not owner
@@ -194,7 +194,7 @@ def testAPI_create(device_id):
     resule, uid, client = KeycloakAccess.token_get_uid(request.headers['Access-Token'])
 
     if resule == False:
-        Log.error('[register device] check token FIELD!!!')
+        Log.error('[register device] check token FAILED!!!')
         abort(401)
 
     # not allow for third party application
@@ -205,7 +205,7 @@ def testAPI_create(device_id):
     # create resource and get resource id
     resule, res_id = KeycloakAccess.create_resource(device_id, uid)
     if resule == False:
-        Log.error('[register device] create resource FIELD!!!')
+        Log.error('[register device] create resource FAILED!!!')
         abort(500)
 
     # add properties to dict
@@ -245,7 +245,7 @@ def testAPI_share_resource(device_id):
     # check my own
     result, list_own_resid = KeycloakAccess.check_own_resource(uid)
     if result != True:
-        Log.error('[get owner resource] FIELD!!')
+        Log.error('[get owner resource] FAILED!!')
         abort(401)
 
     # not owner
@@ -265,7 +265,7 @@ def testAPI_share_resource(device_id):
     # Log.warning('{}  {}'.format(result, p_id))
 
     if result != True:
-        Log.error('[create policy] FIELD!!!')
+        Log.error('[create policy] FAILED!!!')
         abort(500)
 
     device_dict[device_id].shared.append(
@@ -301,7 +301,7 @@ def testAPI_unshare_resource(device_id):
     # check my own
     result, list_own_resid = KeycloakAccess.check_own_resource(uid)
     if result != True:
-        Log.error('[get owner resource] FIELD!!')
+        Log.error('[get owner resource] FAILED!!')
         abort(401)
 
     # not owner
@@ -320,7 +320,7 @@ def testAPI_unshare_resource(device_id):
     # Log.warning('{}  {}'.format(result, p_id))
 
     if result != True:
-        Log.error('[delete policy] FIELD!!!')
+        Log.error('[delete policy] FAILED!!!')
         abort(s_code)
 
     Log.warning('{}'.format(device_dict[device_id].shared))
@@ -362,7 +362,7 @@ def testAPI_search_one(device_id, prop_name):
         resule, rpt_detail = KeycloakAccess.check_rpt(request.headers['RPT'])
 
         if resule == False:
-            Log.error('[check rpt] FIELD!!!')
+            Log.error('[check rpt] FAILED!!!')
             return retuen_permisson_ticket(device_id)
         
         if rpt_detail['active'] == False:
@@ -392,7 +392,7 @@ def testAPI_search_one(device_id, prop_name):
         # check my own
         result, list_own_resid = KeycloakAccess.check_own_resource(uid)
         if result != True:
-            Log.error('[get owner resource] FIELD!!')
+            Log.error('[get owner resource] FAILED!!')
             abort(401)
 
         # not owner
@@ -428,7 +428,7 @@ def testAPI_update_one(device_id, prop_name):
     # check my own
     result, list_own_resid = KeycloakAccess.check_own_resource(uid)
     if result != True:
-        Log.error('[get owner resource] FIELD!!')
+        Log.error('[get owner resource] FAILED!!')
         abort(401)
 
     # not owner
@@ -485,7 +485,7 @@ def make_device_info_owner(dev_id):
 def retuen_permisson_ticket(device_id):
     resule, ticket = KeycloakAccess.make_ticket(device_dict[device_id].resource_id)
     if resule == False:
-        Log.error('[create ticket] FIELD!!!')
+        Log.error('[create ticket] FAILED!!!')
         abort(401)
     
     return {
