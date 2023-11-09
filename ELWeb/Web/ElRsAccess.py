@@ -27,7 +27,7 @@ def get_dev_info(access_token):
     Log.print_response(resp)
 
     if resp.status_code != 200:
-        Log.error('get_dev_info field!!')
+        Log.error('get_dev_info failed!!')
         return False, ''
 
     return True, resp.json()['devices']
@@ -41,7 +41,7 @@ def get_dev_info(access_token):
 #     Log.print_response(resp)
     
 #     if resp.status_code != 401:
-#         Log.error('get_dev_ticket field!!')
+#         Log.error('get_dev_ticket failed!!')
 #         return False, ''
 
 #     return True, resp.json()
@@ -55,7 +55,7 @@ def get_dev_info(access_token):
 #     Log.print_response(resp)
     
 #     if resp.status_code != 200:
-#         Log.error('get_dev_props field!!')
+#         Log.error('get_dev_props failed!!')
 #         return False, ''
 
 #     return True, resp.json()
@@ -69,7 +69,7 @@ def get_dev_info(access_token):
 #     Log.print_response(resp)
     
 #     if resp.status_code != 200:
-#         Log.error('get_health_info field!!')
+#         Log.error('get_health_info failed!!')
 #         return False, ''
 
 #     return True, resp.json()['healthCareRecorders']
@@ -83,7 +83,7 @@ def get_dev_info(access_token):
 #     Log.print_response(resp)
     
 #     if resp.status_code != 401:
-#         Log.error('get_health_ticket field!!')
+#         Log.error('get_health_ticket failed!!')
 #         return False, ''
 
 #     return True, resp.json()  
@@ -97,7 +97,7 @@ def get_dev_info(access_token):
 #     Log.print_response(resp)
     
 #     if resp.status_code != 200:
-#         Log.error('get_health_props field!!')
+#         Log.error('get_health_props failed!!')
 #         return False, ''
 
 #     return True, resp.json()   
@@ -111,7 +111,7 @@ def get_dev_info(access_token):
 #     Log.debug(resp)
 
 #     if resp.status_code != 200:
-#         Log.error('get_health_props field!!')
+#         Log.error('get_health_props failed!!')
 #         return False, ''
 
 #     return True, resp.json()
@@ -179,7 +179,7 @@ def share_res(res_id, access_token, target_user):
     Log.print_response(resp)
 
     if resp.status_code != 200:
-        Log.error('share resource field')
+        Log.error('share resource failed')
         return False
 
     return True
@@ -193,7 +193,7 @@ def unshare_res(res_id, access_token, policy_id):
     Log.print_response(resp)
 
     if resp.status_code != 200 or resp.text != 'successed':
-        Log.error('un share resource field')
+        Log.error('un share resource failed')
         return False
 
     return True
