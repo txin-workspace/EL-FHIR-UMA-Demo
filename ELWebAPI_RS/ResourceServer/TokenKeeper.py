@@ -78,7 +78,7 @@ def refrech_client_token():
         result, token = KeycloakAccess.get_client_token()
 
         if result == False:
-            Log.error('[refrech_client_token] FIELD!!')
+            Log.error('[refrech_client_token] FAILED!!')
             sleep(0.3)
             continue
 
@@ -106,7 +106,7 @@ def refrech_health_rs_agent_token():
         )
 
         if result == False:
-            Log.error('[refrech_health_rs_agent_token] FIELD!!')
+            Log.error('[refrech_health_rs_agent_token] FAILED!!')
             sleep(0.3)
             continue
 
@@ -132,7 +132,7 @@ def refrech_agent_token():
         )
 
         if resp.status_code != 200:
-            Log.error('[refrech_agent_token] FIELD!!')
+            Log.error('[refrech_agent_token] FAILED!!')
             sleep(0.3)
             continue
 
