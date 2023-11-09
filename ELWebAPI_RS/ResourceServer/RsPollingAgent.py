@@ -41,8 +41,8 @@ def update_health_rs_resource_info():
         TokenKeeper.health_rs_agent_token)
 
     if result != True:
-        Log.error('[share_with_me_obtain] FIELD!!')
-        raise Exception('Get health resource server shared with me field') 
+        Log.error('[share_with_me_obtain] FAILED!!')
+        raise Exception('Get health resource server shared with me failed') 
 
     process_res_shared(res_info_list)
     process_res_unshared(res_info_list)
@@ -67,7 +67,7 @@ def process_res_shared(sharedWithMe):
                 rs_config.agent_name_el
             )
             if result != True:
-                raise Exception('Register health resource to el Keycloak server field') 
+                raise Exception('Register health resource to el Keycloak server failed') 
 
             # add res to dict
             HealthApi.health_dict[res_info['patient']] = HealthApi.Health()
@@ -100,8 +100,8 @@ def process_res_shared(sharedWithMe):
                     res_info['proxy_share'][share_id]['target'])
             )
             if result != True:
-                # raise Exception('share health resource in el Keycloak server field')
-                Log.error('[Agent] setting share field')
+                # raise Exception('share health resource in el Keycloak server failed')
+                Log.error('[Agent] setting share failed')
                 continue
         
             # shared
@@ -150,15 +150,15 @@ def process_res_unshared(sharedWithMe):
 
             # if fhir rs unshared ->
             # unshare in el am
-            result, field_code = KeycloakAccess.unshare_resource(
+            result, failed_code = KeycloakAccess.unshare_resource(
                 TokenKeeper.agent_token, 
                 HealthApi.health_dict[p_id].sub_res_list[share_id].el_rs_code)
 
             if result != True:
-                Log.error('[Agent] delete policy field! {} {} {}'.format(
+                Log.error('[Agent] delete policy failed! {} {} {}'.format(
                     HealthApi.health_dict[p_id].resource_id, 
                     HealthApi.health_dict[p_id].sub_res_list[share_id].el_rs_code, 
-                    field_code))
+                    failed_code))
                 continue
 
             # del local info
@@ -202,7 +202,7 @@ def process_patient_unshared(sharedWithMe):
         result = KeycloakAccess.delete_resource(
             HealthApi.health_dict[p_id].resource_id)
         if result != True:
-            Log.error('[Agent] delete resource field! {}'.format(
+            Log.error('[Agent] delete resource failed! {}'.format(
                 HealthApi.health_dict[p_id].resource_id
             ))
             continue
